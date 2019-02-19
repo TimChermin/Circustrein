@@ -11,9 +11,12 @@ namespace Circustrein
         private List<Wagon> wagons = new List<Wagon>();
         private List<Animal> animals = new List<Animal>();
         private List<Animal> animalsInWagon = new List<Animal>();
+        private AnimalSorter animalSorter;
 
-        private List<Animal> carnivoreAnimals = new List<Animal>();
-        private List<Animal> herbivoreAnimals = new List<Animal>();
+        public Train()
+        {
+            animalSorter = new AnimalSorter();
+        }
 
         /// <summary>
         /// Adds the animal to the train (not to a wagon)
@@ -26,30 +29,14 @@ namespace Circustrein
             animals.Add(animal);
         }
 
-        /// <summary>
-        /// Sorts the Animals into Herbivores and Carnivores
-        /// </summary>
-        private void AnimalSorter()
-        {
-            foreach (Animal animal in animals)
-            {
-                if (animal.FoodType == "Herbivore")
-                {
-                    herbivoreAnimals.Add(animal);
-                }
-                else //FoodType == Carnivores
-                {
-                    carnivoreAnimals.Add(animal);
-                }
-            }
-        }
+        
 
         /// <summary>
         /// Adds the animal to the wagons
         /// </summary>
         public void AddAnimalToWagons()
         {
-            AnimalSorter();
+            animalSorter.SortAnimals(animals);
 
             if (wagons.Count == 0)
             {
@@ -57,11 +44,11 @@ namespace Circustrein
                 wagons.Add(wagon);
             }
 
-            AddAnimalToWagon(carnivoreAnimals);
-            AddAnimalToWagon(herbivoreAnimals);
+            AddAnimalToWagon(animalSorter.CarnivoreAnimals);
+            AddAnimalToWagon(animalSorter.HerbivoreAnimals);
 
-            carnivoreAnimals.Clear();
-            herbivoreAnimals.Clear();
+            animalSorter.CarnivoreAnimals.Clear();
+            animalSorter.HerbivoreAnimals.Clear();
             animals.Clear();
         }
 

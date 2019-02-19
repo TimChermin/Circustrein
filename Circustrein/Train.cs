@@ -99,7 +99,6 @@ namespace Circustrein
                     return succes = checkWagon.CanThisAnimalGoInTheWagon(wagon, animal);
                 }
             }
-            
             return succes = false;
         }
         

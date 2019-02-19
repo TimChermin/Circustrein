@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Animal.cs" />
     <Compile Include="AnimalSorter.cs" />
+    <Compile Include="CheckWagon.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

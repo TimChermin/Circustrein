@@ -10,12 +10,14 @@ namespace Circustrein
     {
         private List<Wagon> wagons = new List<Wagon>();
         private List<Animal> animals = new List<Animal>();
-        private List<Animal> animalsInWagon = new List<Animal>();
         private AnimalSorter animalSorter;
+        private CheckWagon checkWagon;
+        private bool succes;
 
         public Train()
         {
             animalSorter = new AnimalSorter();
+            checkWagon = new CheckWagon(animalSorter);
         }
 
         /// <summary>
@@ -36,8 +38,8 @@ namespace Circustrein
         /// </summary>
         public void AddAnimalToWagons()
         {
-            animalSorter.SortAnimals(animals);
-
+            animalSorter.SetAnimals(animals, wagons);
+            wagons.Clear();
             if (wagons.Count == 0)
             {
                 Wagon wagon = new Wagon();
@@ -61,32 +63,16 @@ namespace Circustrein
         {
             foreach (Animal animal in animals)
             {
-                bool succes = false;
+                succes = false;
                 foreach (Wagon wagon in wagons)
                 {
-                    if (wagon.Full != true)
-                    {
-                        if (wagon.Weight == 0)
-                        {
-                            wagon.AddAnimal(animal);
-                            IsThisTheSmallestAnimal(animal, wagon);
-                            succes = true;
-                            //you can add anything
-                        }
-                        else
-                        {
-                            succes = CheckWagonTest(wagon, animal);
-                        }
-                    }
-                    else //wagon is full
-                    {
-                        succes = false;
-                    }
+                    succes = WhatIsTheWagonWeight(animal, wagon);
                     if (succes == true)
                     {
                         break;
                     }
                 }
+
                 if (succes == false)
                 {
                     Wagon wag = new Wagon(animal);
@@ -95,133 +81,28 @@ namespace Circustrein
             }
         }
 
-        /// <summary>
-        /// Check if the animal can be added to the wagon
-        /// </summary>
-        /// <param name="wagon"></param>
-        /// <param name="animal"></param>
-        /// <returns></returns>
-        private bool CheckWagonTest(Wagon wagon, Animal animal)
+        private bool WhatIsTheWagonWeight(Animal animal, Wagon wagon)
         {
-            animalsInWagon = wagon.Animals;
-            if (wagon.ContainsCarnivore == true)
+            if (wagon.Full != true)
             {
-                if (animal.FoodType == "Carnivore")
+                if (wagon.Weight == 0)
                 {
-                    return false;
-                }
-                else //(animal.FoodType == "Herbivore")
-                {
-                    if (wagon.Weight > 0)
-                    {
-                        if (animal.PointWorth > wagon.SmallestAnimal && wagon.SmallestAnimalIsCarnivore == true && wagon.Weight + animal.PointWorth <= 10)
-                        {
-                            wagon.AddAnimal(animal);
-                            IsThisTheSmallestAnimal(animal, wagon);
-                            return true;
-                        }
-                        else if (wagon.SmallestAnimalIsCarnivore == false && wagon.Weight + animal.PointWorth <= 10)
-                        {
-                            wagon.AddAnimal(animal);
-                            IsThisTheSmallestAnimal(animal, wagon);
-                            return true;
-                        }
-                        else if (animal.PointWorth > wagon.SmallestAnimal && wagon.Weight + animal.PointWorth <= 10)
-                        {
-                            wagon.AddAnimal(animal);
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                            //can't add this animal
-                        }
-                    }
-                    else
-                    {
-                        wagon.AddAnimal(animal);
-                        IsThisTheSmallestAnimal(animal, wagon);
-                        return true;
-                    }
-                }
-            }
-            else //doesn't have a carnivore 
-            {
-                if (animal.FoodType == "Carnivore")
-                {
-                    if (wagon.Weight > 0)
-                    {
-                        if (animal.PointWorth < wagon.SmallestAnimal && wagon.Weight + animal.PointWorth <= 10)
-                        {
-                            wagon.AddAnimal(animal);
-                            IsThisTheSmallestAnimal(animal, wagon);
-                            return true;
-                        }
-                        else
-                        {
-                            //can't add animal
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        wagon.AddAnimal(animal);
-                        IsThisTheSmallestAnimal(animal, wagon);
-                        return true;
-                    }
-                }
-                else // add herb
-                {
-                    if (wagon.Weight > 0)
-                    {
-                        if (wagon.Weight + animal.PointWorth <= 10)
-                        {
-                            wagon.AddAnimal(animal);
-                            IsThisTheSmallestAnimal(animal, wagon);
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                            //can't add this animal
-                        }
-                    }
-                    else
-                    {
-                        wagon.AddAnimal(animal);
-                        IsThisTheSmallestAnimal(animal, wagon);
-                        return true;
-                    }
-                }
-            }
-        }
+                    wagon.AddAnimal(animal);
 
-        /// <summary>
-        /// Checks if the to be added Animal is the smallest in the wagon
-        /// </summary>
-        /// <param name="animal"></param>
-        /// <param name="wagon"></param>
-        /// <returns></returns>
-        private bool IsThisTheSmallestAnimal(Animal animal, Wagon wagon)
-        {
-            if (wagon.SmallestAnimal >= animal.PointWorth)
-            {
-                return false;
-            }
-            else if (wagon.SmallestAnimal < animal.PointWorth && wagon.SmallestAnimalIsCarnivore == true)
-            {
-                return true;
-            }
-            else
-            {
-                wagon.SmallestAnimal = animal.PointWorth;
-                if (animal.FoodType == "Carnivore")
-                {
-                    wagon.SmallestAnimalIsCarnivore = true;
+                    animalSorter.IsThisTheSmallestAnimal(animal, wagon);
+
+                    return succes = true;
+                    //you can add anything
                 }
-                return true;
+                else
+                {
+                    return succes = checkWagon.CanThisAnimalGoInTheWagon(wagon, animal);
+                }
             }
+            
+            return succes = false;
         }
+        
         
         /// <summary>
         /// Get all Animals (Not in wagons)

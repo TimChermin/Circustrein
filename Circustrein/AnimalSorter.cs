@@ -20,7 +20,7 @@ namespace Circustrein
         /// <summary>
         /// Sorts the Animals into Herbivores and Carnivores
         /// </summary>
-        public void SetAnimals(List<Animal> animals, List<Wagon> wagons)
+        public void SortAnimals(List<Animal> animals, List<Wagon> wagons)
         {
             foreach (Wagon wagon in wagons)
             {
@@ -48,12 +48,12 @@ namespace Circustrein
                     carnivoreAnimals.Add(animal);
                 }
             }
-
             OrderAnimalsBySize();
-            
         }
 
-
+        /// <summary>
+        /// Orders all animals by size (big first and small last)
+        /// </summary>
         public void OrderAnimalsBySize()
         {
             carnivoreAnimals = carnivoreAnimals.OrderByDescending(animal => animal.PointWorth).ToList();
@@ -70,10 +70,12 @@ namespace Circustrein
         /// <returns></returns>
         public bool IsThisTheSmallestAnimal(Animal animal, Wagon wagon)
         {
+            //when the animal in the wagon is bigger than the to be added animal
             if (wagon.SmallestAnimal >= animal.PointWorth)
             {
                 return false;
             }
+            //when the animal in the wagon is smaller than the to be added animal and the to wagon has a Carn
             else if (wagon.SmallestAnimal < animal.PointWorth && wagon.SmallestAnimalIsCarnivore == true)
             {
                 return true;

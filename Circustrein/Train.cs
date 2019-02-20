@@ -40,7 +40,7 @@ namespace Circustrein
         public void AddAnimalToWagons()
         {
             //first sort the animals to Carn and Herbs
-            animalSorter.SetAnimals(animals, wagons);
+            animalSorter.SortAnimals(animals, wagons);
 
             //clear the wagons for a restart
             wagons.Clear();

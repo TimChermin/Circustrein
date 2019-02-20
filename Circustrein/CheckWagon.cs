@@ -83,7 +83,7 @@ namespace Circustrein
             }
 
 
-            if (wagon.Weight > 0 && animal.FoodType != "Carnivore")
+            else if (wagon.Weight > 0 && animal.FoodType != "Carnivore")
             {
                 if (wagon.Weight + animal.PointWorth <= 10)
                 {

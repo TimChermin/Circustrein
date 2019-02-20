@@ -88,8 +88,8 @@ namespace Circustrein.Tests
             train.AddAnimal("Herbivore", "Big");
             train.AddAnimal("Herbivore", "Big");
             train.AddAnimal("Herbivore", "Big");
-            
             train.AddAnimalToWagons();
+            
 
             train.AddAnimal("Carnivore", "Medium");
             train.AddAnimal("Herbivore", "Big");
@@ -164,3 +164,10 @@ namespace Circustrein.Tests
         }
     }
 }
+/*animals = new List<Animal>();
+           animals.Add(animal = new Animal( "Carnivore", "Medium"));
+           animals.Add(animal = new Animal("Herbivore", "Big"));
+           animals.Add(animal = new Animal("Carnivore", "Medium"));
+           animals.Add(animal = new Animal("Carnivore", "Medium"));
+           animals.Add(animal = new Animal("Carnivore", "Medium"));
+           animals.Add(animal = new Animal("Carnivore", "Medium"));*/

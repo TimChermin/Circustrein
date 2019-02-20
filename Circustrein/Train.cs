@@ -66,7 +66,7 @@ namespace Circustrein
         /// Adds the animal to the wagon
         /// </summary>
         /// <param name="animals"></param>
-        private void AddAnimalToWagon(List<Animal> animals)
+        public void AddAnimalToWagon(List<Animal> animals)
         {
             foreach (Animal animal in animals)
             {

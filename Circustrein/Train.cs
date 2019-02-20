@@ -16,6 +16,7 @@ namespace Circustrein
 
         public Train()
         {
+            //create animalSorter and checkWagon
             animalSorter = new AnimalSorter();
             checkWagon = new CheckWagon(animalSorter);
         }
@@ -38,14 +39,20 @@ namespace Circustrein
         /// </summary>
         public void AddAnimalToWagons()
         {
+            //first sort the animals to Carn and Herbs
             animalSorter.SetAnimals(animals, wagons);
+
+            //clear the wagons for a restart
             wagons.Clear();
+
+            //Check if it worked and add a wagon
             if (wagons.Count == 0)
             {
                 Wagon wagon = new Wagon();
                 wagons.Add(wagon);
             }
 
+            //first add the Carn to the wagon, after that you add the Herbs
             AddAnimalToWagon(animalSorter.CarnivoreAnimals);
             AddAnimalToWagon(animalSorter.HerbivoreAnimals);
 

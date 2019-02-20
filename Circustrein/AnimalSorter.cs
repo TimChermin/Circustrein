@@ -49,7 +49,15 @@ namespace Circustrein
                 }
             }
 
+            OrderAnimalsBySize();
             
+        }
+
+
+        public void OrderAnimalsBySize()
+        {
+            carnivoreAnimals = carnivoreAnimals.OrderByDescending(animal => animal.PointWorth).ToList();
+            herbivoreAnimals = herbivoreAnimals.OrderByDescending(animal => animal.PointWorth).ToList();
         }
 
 

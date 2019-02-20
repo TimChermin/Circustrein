@@ -35,7 +35,6 @@ namespace Circustrein
                 }
                 else //(animal.FoodType == "Herbivore")
                 {
-
                     //added this first
                     return CarnInWagon(wagon, animal);
                 }
@@ -54,14 +53,14 @@ namespace Circustrein
         }
 
         /// <summary>
-        /// 
+        /// Continue checken when there is no carn in the wagon yet
         /// </summary>
         /// <param name="wagon"></param>
         /// <param name="animal"></param>
         /// <returns></returns>
         public bool CarnNotInWagon(Wagon wagon, Animal animal)
         {
-            if (wagon.Weight > 0 && animal.FoodType == "Carnivore")
+            if (animal.FoodType == "Carnivore")
             {
                 if (animal.PointWorth < wagon.SmallestAnimal && wagon.Weight + animal.PointWorth <= 10)
                 {
@@ -69,21 +68,8 @@ namespace Circustrein
                     animalSorter.IsThisTheSmallestAnimal(animal, wagon);
                     return true;
                 }
-                else
-                {
-                    //can't add animal
-                    return false;
-                }
             }
-            else if (animal.FoodType == "Carnivore")
-            {
-                wagon.AddAnimal(animal);
-                animalSorter.IsThisTheSmallestAnimal(animal, wagon);
-                return true;
-            }
-
-
-            else if (wagon.Weight > 0 && animal.FoodType != "Carnivore")
+            else if (animal.FoodType != "Carnivore")
             {
                 if (wagon.Weight + animal.PointWorth <= 10)
                 {
@@ -91,56 +77,40 @@ namespace Circustrein
                     animalSorter.IsThisTheSmallestAnimal(animal, wagon);
                     return true;
                 }
-                else
-                {
-                    return false;
-                    //can't add this animal
-                }
             }
-            else if (animal.FoodType != "Carnivore")
+            return false;
+        }
+
+        /// <summary>
+        /// Continue checken when there is no carn in the wagon yet
+        /// </summary>
+        /// <param name="wagon"></param>
+        /// <param name="animal"></param>
+        /// <returns></returns>
+        public bool CarnInWagon(Wagon wagon, Animal animal)
+        {
+            //this was for the herb when haveing a carn in the wagon
+            if (animal.PointWorth > wagon.SmallestAnimal && wagon.SmallestAnimalIsCarnivore == true && wagon.Weight + animal.PointWorth <= 10)
             {
                 wagon.AddAnimal(animal);
                 animalSorter.IsThisTheSmallestAnimal(animal, wagon);
                 return true;
             }
-            return false;
-
-        }
-
-        public bool CarnInWagon(Wagon wagon, Animal animal)
-        {
-
-            //this was for the herb when haveing a carn in the wagon
-            if (wagon.Weight > 0)
+            else if (wagon.SmallestAnimalIsCarnivore == false && wagon.Weight + animal.PointWorth <= 10)
             {
-                if (animal.PointWorth > wagon.SmallestAnimal && wagon.SmallestAnimalIsCarnivore == true && wagon.Weight + animal.PointWorth <= 10)
-                {
-                    wagon.AddAnimal(animal);
-                    animalSorter.IsThisTheSmallestAnimal(animal, wagon);
-                    return true;
-                }
-                else if (wagon.SmallestAnimalIsCarnivore == false && wagon.Weight + animal.PointWorth <= 10)
-                {
-                    wagon.AddAnimal(animal);
-                    animalSorter.IsThisTheSmallestAnimal(animal, wagon);
-                    return true;
-                }
-                else if (animal.PointWorth > wagon.SmallestAnimal && wagon.Weight + animal.PointWorth <= 10)
-                {
-                    wagon.AddAnimal(animal);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                    //can't add this animal
-                }
+                wagon.AddAnimal(animal);
+                animalSorter.IsThisTheSmallestAnimal(animal, wagon);
+                return true;
+            }
+            else if (animal.PointWorth > wagon.SmallestAnimal && wagon.Weight + animal.PointWorth <= 10)
+            {
+                wagon.AddAnimal(animal);
+                return true;
             }
             else
             {
-                wagon.AddAnimal(animal);
-                animalSorter.IsThisTheSmallestAnimal(animal, wagon);
-                return true;
+                return false;
+                //can't add this animal
             }
         }
     }

@@ -91,7 +91,7 @@ namespace Circustrein.Tests
             train.AddAnimalToWagons();
             
 
-            train.AddAnimal("Carnivore", "Medium");
+            train.AddAnimal("Herbivore", "Medium");
             train.AddAnimal("Herbivore", "Big");
             train.AddAnimal("Carnivore", "Medium");
             train.AddAnimal("Carnivore", "Medium");
@@ -114,6 +114,7 @@ namespace Circustrein.Tests
             }
             //Assert
             Assert.IsTrue(wagonCount == 5);
+            //7 when commenting the wagon.clear();
         }
 
         [TestMethod()]
@@ -164,6 +165,12 @@ namespace Circustrein.Tests
         }
     }
 }
+
+
+
+
+
+
 /*animals = new List<Animal>();
            animals.Add(animal = new Animal( "Carnivore", "Medium"));
            animals.Add(animal = new Animal("Herbivore", "Big"));

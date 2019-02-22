@@ -12,35 +12,15 @@ namespace Circustrein.Tests
     public class Form1Tests
     {
 
-        Train train;
+        Train train = new Train();
 
         //adds the first Animals for testing (before everything else)
         [TestInitialize]
         public void CreateList()
         {
-            train = new Train();
+            
 
-            /*for (int i = 0; i <= 15; i++)
-            {
-                if (i > 8 & i < 11)
-                {
-                    train.AddAnimal("Herbivore", "Big");
-                }
-                else if (i == 3)
-                {
-                    train.AddAnimal("Carnivore", "Medium");
-                }
-                else if (i >= 3 && i <= 8)
-                {
-                    train.AddAnimal("Carnivore", "Small");
-                }
-                else
-                {
-                    train.AddAnimal("Herbivore", "Medium");
-                }
-            }
-            */
-            train.AddAnimalToWagons();
+           
         }
 
         //Should_ExpectedBehavior_When_StateUnderTest

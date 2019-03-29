@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Circustrein.Enums;
 
 namespace Circustrein
 {
@@ -26,7 +27,7 @@ namespace Circustrein
         /// </summary>
         /// <param name="foodType"></param>
         /// <param name="size"></param>
-        public void AddAnimal(string foodType, string size)
+        public void AddAnimal(string foodType, AnimalSize size)
         {
             Animal animal = new Animal(foodType, size);
             animals.Add(animal);

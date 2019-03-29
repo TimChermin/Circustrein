@@ -62,7 +62,7 @@ namespace Circustrein
         {
             if (animal.FoodType == "Carnivore")
             {
-                if (animal.PointWorth < wagon.SmallestAnimal && wagon.Weight + animal.PointWorth <= 10)
+                if (animal.AnimalSize < wagon.SmallestAnimal && wagon.Weight + (int)animal.AnimalSize <= 10)
                 {
                     wagon.AddAnimal(animal);
                     animalSorter.IsThisTheSmallestAnimal(animal, wagon);
@@ -71,7 +71,7 @@ namespace Circustrein
             }
             else if (animal.FoodType != "Carnivore")
             {
-                if (wagon.Weight + animal.PointWorth <= 10)
+                if (wagon.Weight + (int)animal.AnimalSize <= 10)
                 {
                     wagon.AddAnimal(animal);
                     animalSorter.IsThisTheSmallestAnimal(animal, wagon);
@@ -90,19 +90,19 @@ namespace Circustrein
         public bool CarnInWagon(Wagon wagon, Animal animal)
         {
             //this was for the herb when haveing a carn in the wagon
-            if (animal.PointWorth > wagon.SmallestAnimal && wagon.SmallestAnimalIsCarnivore == true && wagon.Weight + animal.PointWorth <= 10)
+            if (animal.AnimalSize > wagon.SmallestAnimal && wagon.SmallestAnimalIsCarnivore == true && wagon.Weight + (int)animal.AnimalSize <= 10)
             {
                 wagon.AddAnimal(animal);
                 animalSorter.IsThisTheSmallestAnimal(animal, wagon);
                 return true;
             }
-            else if (wagon.SmallestAnimalIsCarnivore == false && wagon.Weight + animal.PointWorth <= 10)
+            else if (wagon.SmallestAnimalIsCarnivore == false && wagon.Weight + (int)animal.AnimalSize <= 10)
             {
                 wagon.AddAnimal(animal);
                 animalSorter.IsThisTheSmallestAnimal(animal, wagon);
                 return true;
             }
-            else if (animal.PointWorth > wagon.SmallestAnimal && wagon.Weight + animal.PointWorth <= 10)
+            else if (animal.AnimalSize > wagon.SmallestAnimal && wagon.Weight + (int)animal.AnimalSize <= 10)
             {
                 wagon.AddAnimal(animal);
                 return true;

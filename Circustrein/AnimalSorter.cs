@@ -56,8 +56,8 @@ namespace Circustrein
         /// </summary>
         public void OrderAnimalsBySize()
         {
-            carnivoreAnimals = carnivoreAnimals.OrderByDescending(animal => animal.PointWorth).ToList();
-            herbivoreAnimals = herbivoreAnimals.OrderByDescending(animal => animal.PointWorth).ToList();
+            carnivoreAnimals = carnivoreAnimals.OrderByDescending(animal => animal.AnimalSize).ToList();
+            herbivoreAnimals = herbivoreAnimals.OrderByDescending(animal => animal.AnimalSize).ToList();
         }
 
 
@@ -71,18 +71,18 @@ namespace Circustrein
         public bool IsThisTheSmallestAnimal(Animal animal, Wagon wagon)
         {
             //when the animal in the wagon is bigger than the to be added animal
-            if (wagon.SmallestAnimal >= animal.PointWorth)
+            if (wagon.SmallestAnimal >= animal.AnimalSize)
             {
                 return false;
             }
             //when the animal in the wagon is smaller than the to be added animal and the to wagon has a Carn
-            else if (wagon.SmallestAnimal < animal.PointWorth && wagon.SmallestAnimalIsCarnivore == true)
+            else if (wagon.SmallestAnimal < animal.AnimalSize && wagon.SmallestAnimalIsCarnivore == true)
             {
                 return true;
             }
             else
             {
-                wagon.SmallestAnimal = animal.PointWorth;
+                wagon.SmallestAnimal = animal.AnimalSize;
                 if (animal.FoodType == "Carnivore")
                 {
                     wagon.SmallestAnimalIsCarnivore = true;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Circustrein.Enums;
 
 namespace Circustrein
 {
@@ -10,7 +11,7 @@ namespace Circustrein
     {
         private int weight;
         private bool full;
-        private int smallestAnimal;
+        private AnimalSize smallestAnimal;
         private bool smallestAnimalIsCarnivore;
         private bool containsCarnivore;
 
@@ -19,7 +20,7 @@ namespace Circustrein
         public Wagon()
         {
             weight = 0;
-            smallestAnimal = 0;
+            smallestAnimal = AnimalSize.Nothing;
             containsCarnivore = false;
             smallestAnimalIsCarnivore = false;
             full = false;
@@ -27,7 +28,7 @@ namespace Circustrein
 
         public Wagon(Animal animal)
         {
-            smallestAnimal = 0;
+            smallestAnimal = AnimalSize.Nothing;
             //containsCarnivore = false;
             smallestAnimalIsCarnivore = false;
             full = false;
@@ -37,7 +38,7 @@ namespace Circustrein
         public int Weight { get => weight; set => weight = value; }
         public List<Animal> Animals { get => animals; set => animals = value; }
         public bool Full { get => full; set => full = value; }
-        public int SmallestAnimal { get => smallestAnimal; set => smallestAnimal = value; }
+        public AnimalSize SmallestAnimal { get => smallestAnimal; set => smallestAnimal = value; }
         public bool ContainsCarnivore { get => containsCarnivore; set => containsCarnivore = value; }
         public bool SmallestAnimalIsCarnivore { get => smallestAnimalIsCarnivore; set => smallestAnimalIsCarnivore = value; }
 
@@ -48,19 +49,19 @@ namespace Circustrein
         public void AddAnimal(Animal animal)
         {
             animals.Add(animal);
-            weight += animal.PointWorth;
+            weight += (int)animal.AnimalSize;
             if (animal.FoodType == "Carnivore")
             {
                 containsCarnivore = true;
                 smallestAnimalIsCarnivore = true;
-                smallestAnimal = animal.PointWorth;
+                smallestAnimal = animal.AnimalSize;
             }
             else if (animal.FoodType == "Herbivore" && containsCarnivore != true)
             {
                 containsCarnivore = false;
             }
             
-            if ((animal.PointWorth == 5 && animal.FoodType == "Carnivore") || (weight == 10))
+            if ((animal.AnimalSize == AnimalSize.Big && animal.FoodType == "Carnivore") || (weight == 10))
             {
                 full = true;
             }
@@ -72,7 +73,7 @@ namespace Circustrein
             string wagons = "";
             foreach (Animal animal in animals)
             {
-                wagons += animal.FoodType + ": " + animal.Size + System.Environment.NewLine;
+                wagons += animal.FoodType + ": " + animal.AnimalSize.ToString() + System.Environment.NewLine;
             }
             return wagons;
         }

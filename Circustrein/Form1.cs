@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Circustrein.Enums;
 
 namespace Circustrein
 {
@@ -26,7 +27,7 @@ namespace Circustrein
         public void buttonAddAnimal_Click(object sender, EventArgs e)
         {
             string foodType = comboBoxFoodType.Text;
-            string size = comboBoxSize.Text;
+            AnimalSize size = (AnimalSize)Enum.Parse(typeof(AnimalSize),comboBoxSize.Text);
             train.AddAnimal(foodType, size);
             UpdateInterface();
         }
@@ -90,19 +91,19 @@ namespace Circustrein
 
                 if (i > 8 & i < 11)
                 {
-                    train.AddAnimal("Herbivore", "Big");
+                    train.AddAnimal("Herbivore", AnimalSize.Big);
                 }
                 else if (i < 3)
                 {
-                    train.AddAnimal("Carnivore", "Medium");
+                    train.AddAnimal("Carnivore", AnimalSize.Medium);
                 }
                 else if (i >= 3 && i <=8)
                 {
-                    train.AddAnimal("Carnivore", "Small");
+                    train.AddAnimal("Carnivore", AnimalSize.Small);
                 }
                 else
                 {
-                    train.AddAnimal("Herbivore", "Medium");
+                    train.AddAnimal("Herbivore", AnimalSize.Medium);
                 }
                 
             }

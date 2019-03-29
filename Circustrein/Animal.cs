@@ -3,52 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Circustrein.Enums;
 
 namespace Circustrein
 {
     public class Animal
     {
+        
         private string foodType;
-        private string size;
-        private int pointWorth;
+        private AnimalSize animalSize;
+        private int points;
 
-        public Animal(string foodType, string size)
+        public Animal(string foodType, AnimalSize animalSize)
         {
             this.foodType = foodType;
-            this.size = size;
-            this.pointWorth = CalculatePoints(size);
+            this.AnimalSize = animalSize;
+            this.points = (int)animalSize;
         }
 
         public string FoodType { get => foodType; set => foodType = value; }
-        public string Size { get => size; set => size = value; }
-        public int PointWorth { get => pointWorth; set => pointWorth = value; }
-
-        /// <summary>
-        /// calculates the size into points
-        /// </summary>
-        /// <param name="size"></param>
-        /// <returns></returns>
-        private int CalculatePoints(string size)
-        {
-            int points = 0;
-            if (size == "Small")
-            {
-                points = 1;
-            }
-            else if (size == "Medium")
-            {
-                points = 3;
-            }
-            else if (size == "Big")
-            {
-                points = 5;
-            }
-            return points;
-        }
+        public AnimalSize AnimalSize { get => animalSize; set => animalSize = value; }
+        
 
         public override string ToString()
         {
-            return foodType + "   " + size + "   " + pointWorth.ToString();
+            return foodType + "   " + animalSize.ToString() + "   " + points.ToString();
         }
     }
 }

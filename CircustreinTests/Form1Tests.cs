@@ -124,37 +124,5 @@ namespace Circustrein.Tests
             //Assert
             Assert.IsTrue(wagonCount == 6);
         }
-
-
-        [TestMethod()]
-        public void Should_NotAddCarnToWagon_When_ItHasAnSmall()
-        {
-            //Arrange
-            train.AddAnimal("Herbivore", "Small");
-            train.AddAnimal("Herbivore", "Small");
-            train.AddAnimal("Herbivore", "Small");
-            train.AddAnimal("Herbivore", "Small");
-            train.AddAnimal("Herbivore", "Small");
-
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimalToWagons();
-        }
     }
 }
-
-
-
-
-
-
-/*animals = new List<Animal>();
-           animals.Add(animal = new Animal( "Carnivore", "Medium"));
-           animals.Add(animal = new Animal("Herbivore", "Big"));
-           animals.Add(animal = new Animal("Carnivore", "Medium"));
-           animals.Add(animal = new Animal("Carnivore", "Medium"));
-           animals.Add(animal = new Animal("Carnivore", "Medium"));
-           animals.Add(animal = new Animal("Carnivore", "Medium"));*/

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Circustrein.Enums;
 
 namespace Circustrein
 {
@@ -26,7 +27,7 @@ namespace Circustrein
             {
                 foreach (Animal animal in wagon.Animals)
                 {
-                    if (animal.FoodType == "Herbivore")
+                    if (animal.FoodType == AnimalType.Herbivore)
                     {
                         herbivoreAnimals.Add(animal);
                     }
@@ -39,7 +40,7 @@ namespace Circustrein
 
             foreach (Animal animal in animals)
             {
-                if (animal.FoodType == "Herbivore")
+                if (animal.FoodType == AnimalType.Herbivore)
                 {
                     herbivoreAnimals.Add(animal);
                 }
@@ -83,7 +84,7 @@ namespace Circustrein
             else
             {
                 wagon.SmallestAnimal = animal.AnimalSize;
-                if (animal.FoodType == "Carnivore")
+                if (animal.FoodType == AnimalType.Carnivore)
                 {
                     wagon.SmallestAnimalIsCarnivore = true;
                 }

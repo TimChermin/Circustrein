@@ -10,24 +10,24 @@ namespace Circustrein
     public class Animal
     {
         
-        private string foodType;
+        private AnimalType foodType;
         private AnimalSize animalSize;
         private int points;
 
-        public Animal(string foodType, AnimalSize animalSize)
+        public Animal(AnimalType foodType, AnimalSize animalSize)
         {
             this.foodType = foodType;
             this.AnimalSize = animalSize;
             this.points = (int)animalSize;
         }
 
-        public string FoodType { get => foodType; set => foodType = value; }
+        public AnimalType FoodType { get => foodType; set => foodType = value; }
         public AnimalSize AnimalSize { get => animalSize; set => animalSize = value; }
         
 
         public override string ToString()
         {
-            return foodType + "   " + animalSize.ToString() + "   " + points.ToString();
+            return foodType.ToString() + "   " + animalSize.ToString() + "   " + points.ToString();
         }
     }
 }

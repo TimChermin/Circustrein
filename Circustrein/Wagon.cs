@@ -50,18 +50,18 @@ namespace Circustrein
         {
             animals.Add(animal);
             weight += (int)animal.AnimalSize;
-            if (animal.FoodType == "Carnivore")
+            if (animal.FoodType == AnimalType.Carnivore)
             {
                 containsCarnivore = true;
                 smallestAnimalIsCarnivore = true;
                 smallestAnimal = animal.AnimalSize;
             }
-            else if (animal.FoodType == "Herbivore" && containsCarnivore != true)
+            else if (animal.FoodType == AnimalType.Herbivore && containsCarnivore != true)
             {
                 containsCarnivore = false;
             }
             
-            if ((animal.AnimalSize == AnimalSize.Big && animal.FoodType == "Carnivore") || (weight == 10))
+            if ((animal.AnimalSize == AnimalSize.Big && animal.FoodType == AnimalType.Carnivore) || (weight == 10))
             {
                 full = true;
             }

@@ -27,7 +27,7 @@ namespace Circustrein
         /// </summary>
         /// <param name="foodType"></param>
         /// <param name="size"></param>
-        public void AddAnimal(string foodType, AnimalSize size)
+        public void AddAnimal(AnimalType foodType, AnimalSize size)
         {
             Animal animal = new Animal(foodType, size);
             animals.Add(animal);

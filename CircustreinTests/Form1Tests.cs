@@ -37,14 +37,14 @@ namespace Circustrein.Tests
             train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
             train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
             train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Big);
             train.AddAnimalToWagons();
 
             //Act
             foreach (Wagon wagon in train.LoadWagons())
             {
                 int carnivoresInWagon = 0;
-
-
+                
                 foreach (Animal animal in wagon.Animals)
                 {
                     if (animal.FoodType == AnimalType.Carnivore)
@@ -52,7 +52,6 @@ namespace Circustrein.Tests
                         carnivoresInWagon += 1;
                     }
                 }
-
                 //Assert
                 Assert.IsFalse(carnivoresInWagon > 1);
             }

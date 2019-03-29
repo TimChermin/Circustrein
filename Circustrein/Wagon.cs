@@ -29,7 +29,7 @@ namespace Circustrein
         public Wagon(Animal animal)
         {
             smallestAnimal = AnimalSize.Nothing;
-            //containsCarnivore = false;
+            containsCarnivore = false;
             smallestAnimalIsCarnivore = false;
             full = false;
             AddAnimal(animal);
@@ -48,23 +48,19 @@ namespace Circustrein
         /// <param name="animal"></param>
         public void AddAnimal(Animal animal)
         {
-            animals.Add(animal);
-            weight += (int)animal.AnimalSize;
             if (animal.FoodType == AnimalType.Carnivore)
             {
                 containsCarnivore = true;
                 smallestAnimalIsCarnivore = true;
                 smallestAnimal = animal.AnimalSize;
             }
-            else if (animal.FoodType == AnimalType.Herbivore && containsCarnivore != true)
-            {
-                containsCarnivore = false;
-            }
             
             if ((animal.AnimalSize == AnimalSize.Big && animal.FoodType == AnimalType.Carnivore) || (weight == 10))
             {
                 full = true;
             }
+            animals.Add(animal);
+            weight += (int)animal.AnimalSize;
         }
 
 

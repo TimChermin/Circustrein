@@ -12,15 +12,20 @@ namespace Circustrein
 
         public List<Animal> CarnivoreAnimals { get; set; }
         public List<Animal> HerbivoreAnimals { get; set; }
-
+        
         
         /// <summary>
         /// Sorts the Animals into Herbivores and Carnivores
         /// </summary>
         public void SortAnimals(List<Animal> animals, List<Wagon> wagons)
         {
-            CarnivoreAnimals.Clear();
-            HerbivoreAnimals.Clear();
+            CarnivoreAnimals = new List<Animal>();
+            HerbivoreAnimals = new List<Animal>();
+
+            if (wagons == null || animals == null)
+            {
+                return;
+            }
 
             foreach (Wagon wagon in wagons)
             {

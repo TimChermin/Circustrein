@@ -9,8 +9,6 @@ namespace Circustrein
 {
     public class Wagon
     {
-        private List<Animal> animals = new List<Animal>();
-
         public Wagon()
         {
             Weight = 0;
@@ -18,10 +16,12 @@ namespace Circustrein
             ContainsCarnivore = false;
             SmallestAnimalIsCarnivore = false;
             Full = false;
+            Animals = new List<Animal>();
         }
 
         public Wagon(Animal animal)
         {
+            Animals = new List<Animal>();
             SmallestAnimal = AnimalSize.Nothing;
             ContainsCarnivore = false;
             SmallestAnimalIsCarnivore = false;
@@ -53,7 +53,7 @@ namespace Circustrein
             {
                 Full = true;
             }
-            animals.Add(animal);
+            Animals.Add(animal);
             Weight += (int)animal.AnimalSize;
         }
 
@@ -61,7 +61,7 @@ namespace Circustrein
         public override string ToString()
         {
             string wagons = "";
-            foreach (Animal animal in animals)
+            foreach (Animal animal in Animals)
             {
                 wagons += animal.FoodType + ": " + animal.AnimalSize.ToString() + System.Environment.NewLine;
             }

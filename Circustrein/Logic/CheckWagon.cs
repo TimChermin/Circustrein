@@ -27,6 +27,26 @@ namespace Circustrein
             }
             return false;
         }
+
+
+        public bool CanTheAnimalBeAdded(Wagon wagon, Animal animal)
+        {
+            if (IsTheWagonEmpty(wagon) == false)
+            {
+                if (CanThisAnimalGoInTheWagon(wagon, animal) == true)
+                {
+                    return true;
+                }
+
+            }
+            else if (IsTheWagonEmpty(wagon) == true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
         
         public bool CanThisAnimalGoInTheWagon(Wagon wagon, Animal animal)
         {

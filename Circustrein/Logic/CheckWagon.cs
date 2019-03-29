@@ -37,7 +37,6 @@ namespace Circustrein
                 {
                     return true;
                 }
-
             }
             else if (IsTheWagonEmpty(wagon) == true)
             {
@@ -100,10 +99,6 @@ namespace Circustrein
         {
             //this was for the herb when haveing a carn in the wagon
             if (animal.AnimalSize > wagon.SmallestAnimal && wagon.SmallestAnimalIsCarnivore == true && wagon.Weight + (int)animal.AnimalSize <= 10)
-            {
-                return true;
-            }
-            else if (wagon.SmallestAnimalIsCarnivore == false && wagon.Weight + (int)animal.AnimalSize <= 10)
             {
                 return true;
             }

@@ -9,15 +9,11 @@ namespace Circustrein
 {
     class AnimalSorter
     {
-        private List<Animal> carnivoreAnimals = new List<Animal>();
-        private List<Animal> herbivoreAnimals = new List<Animal>();
 
-        public List<Animal> CarnivoreAnimals { get => carnivoreAnimals; set => carnivoreAnimals = value; }
-        public List<Animal> HerbivoreAnimals { get => herbivoreAnimals; set => herbivoreAnimals = value; }
+        public List<Animal> CarnivoreAnimals { get; set; }
+        public List<Animal> HerbivoreAnimals { get; set; }
 
-
-
-
+        
         /// <summary>
         /// Sorts the Animals into Herbivores and Carnivores
         /// </summary>
@@ -32,11 +28,11 @@ namespace Circustrein
                 {
                     if (animal.FoodType == AnimalType.Herbivore)
                     {
-                        herbivoreAnimals.Add(animal);
+                        HerbivoreAnimals.Add(animal);
                     }
                     else //FoodType == Carnivores
                     {
-                        carnivoreAnimals.Add(animal);
+                        CarnivoreAnimals.Add(animal);
                     }
                 }
             }
@@ -45,28 +41,15 @@ namespace Circustrein
             {
                 if (animal.FoodType == AnimalType.Herbivore)
                 {
-                    herbivoreAnimals.Add(animal);
+                    HerbivoreAnimals.Add(animal);
                 }
                 else //FoodType == Carnivores
                 {
-                    carnivoreAnimals.Add(animal);
+                    CarnivoreAnimals.Add(animal);
                 }
             }
-            OrderAnimalsBySize();
+            CarnivoreAnimals = CarnivoreAnimals.OrderByDescending(animal => animal.AnimalSize).ToList();
+            HerbivoreAnimals = HerbivoreAnimals.OrderByDescending(animal => animal.AnimalSize).ToList();
         }
-
-        /// <summary>
-        /// Orders all animals by size (big first and small last)
-        /// </summary>
-        public void OrderAnimalsBySize()
-        {
-            carnivoreAnimals = carnivoreAnimals.OrderByDescending(animal => animal.AnimalSize).ToList();
-            herbivoreAnimals = herbivoreAnimals.OrderByDescending(animal => animal.AnimalSize).ToList();
-        }
-
-
-        
-
-
     }
 }

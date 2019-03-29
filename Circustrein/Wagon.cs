@@ -9,38 +9,32 @@ namespace Circustrein
 {
     public class Wagon
     {
-        private int weight;
-        private bool full;
-        private AnimalSize smallestAnimal;
-        private bool smallestAnimalIsCarnivore;
-        private bool containsCarnivore;
-
         private List<Animal> animals = new List<Animal>();
 
         public Wagon()
         {
-            weight = 0;
-            smallestAnimal = AnimalSize.Nothing;
-            containsCarnivore = false;
-            smallestAnimalIsCarnivore = false;
-            full = false;
+            Weight = 0;
+            SmallestAnimal = AnimalSize.Nothing;
+            ContainsCarnivore = false;
+            SmallestAnimalIsCarnivore = false;
+            Full = false;
         }
 
         public Wagon(Animal animal)
         {
-            smallestAnimal = AnimalSize.Nothing;
-            containsCarnivore = false;
-            smallestAnimalIsCarnivore = false;
-            full = false;
+            SmallestAnimal = AnimalSize.Nothing;
+            ContainsCarnivore = false;
+            SmallestAnimalIsCarnivore = false;
+            Full = false;
             AddAnimal(animal);
         }
 
-        public int Weight { get => weight; set => weight = value; }
-        public List<Animal> Animals { get => animals; set => animals = value; }
-        public bool Full { get => full; set => full = value; }
-        public AnimalSize SmallestAnimal { get => smallestAnimal; set => smallestAnimal = value; }
-        public bool ContainsCarnivore { get => containsCarnivore; set => containsCarnivore = value; }
-        public bool SmallestAnimalIsCarnivore { get => smallestAnimalIsCarnivore; set => smallestAnimalIsCarnivore = value; }
+        public int Weight { get; set; }
+        public List<Animal> Animals { get; set; }
+        public bool Full { get; set; }
+        public AnimalSize SmallestAnimal { get; set; }
+        public bool ContainsCarnivore { get; set; }
+        public bool SmallestAnimalIsCarnivore { get; set; }
 
         /// <summary>
         /// Adds the animal to this wagon
@@ -50,17 +44,17 @@ namespace Circustrein
         {
             if (animal.FoodType == AnimalType.Carnivore)
             {
-                containsCarnivore = true;
-                smallestAnimalIsCarnivore = true;
-                smallestAnimal = animal.AnimalSize;
+                ContainsCarnivore = true;
+                SmallestAnimalIsCarnivore = true;
+                SmallestAnimal = animal.AnimalSize;
             }
             
-            if ((animal.AnimalSize == AnimalSize.Big && animal.FoodType == AnimalType.Carnivore) || (weight == 10))
+            if ((animal.AnimalSize == AnimalSize.Big && animal.FoodType == AnimalType.Carnivore) || (Weight == 10))
             {
-                full = true;
+                Full = true;
             }
             animals.Add(animal);
-            weight += (int)animal.AnimalSize;
+            Weight += (int)animal.AnimalSize;
         }
 
 

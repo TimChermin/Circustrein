@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Circustrein.Enums;
 
 namespace Circustrein.Tests
 {
@@ -31,11 +32,11 @@ namespace Circustrein.Tests
         public void Should_NotAddCarn_When_TheWagonAlreadyHasAnCarn()
         {
             //Arrange
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
             train.AddAnimalToWagons();
 
             //Act
@@ -46,7 +47,7 @@ namespace Circustrein.Tests
 
                 foreach (Animal animal in wagon.Animals)
                 {
-                    if (animal.FoodType == "Carnivore")
+                    if (animal.FoodType == AnimalType.Carnivore)
                     {
                         carnivoresInWagon += 1;
                     }
@@ -64,19 +65,19 @@ namespace Circustrein.Tests
         public void Should_NotGoOverTheMaxWagonWeight_When_AddingAnimals()
         {
             //Arrange
-            train.AddAnimal("Herbivore", "Big");
-            train.AddAnimal("Herbivore", "Big");
-            train.AddAnimal("Herbivore", "Big");
-            train.AddAnimal("Herbivore", "Big");
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
             train.AddAnimalToWagons();
-            
 
-            train.AddAnimal("Herbivore", "Medium");
-            train.AddAnimal("Herbivore", "Big");
-            train.AddAnimal("Carnivore", "Medium");
-            train.AddAnimal("Carnivore", "Medium");
-            train.AddAnimal("Carnivore", "Medium");
-            train.AddAnimal("Carnivore", "Medium");
+
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Medium);
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Medium);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Medium);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Medium);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Medium);
             train.AddAnimalToWagons();
 
             //Act
@@ -101,17 +102,17 @@ namespace Circustrein.Tests
         public void Should_NotAddCarnToWagon_When_ItHasAnSmallerOrTheSameSizeHerb()
         {
             //Arrange
-            train.AddAnimal("Herbivore", "Small");
-            train.AddAnimal("Herbivore", "Small");
-            train.AddAnimal("Herbivore", "Small");
-            train.AddAnimal("Herbivore", "Small");
-            train.AddAnimal("Herbivore", "Small");
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
 
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
-            train.AddAnimal("Carnivore", "Small");
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
             train.AddAnimalToWagons();
 
             //Act

@@ -108,11 +108,7 @@ namespace Circustrein
                 wagon.AddAnimal(animal);
                 return true;
             }
-            else
-            {
-                return false;
-                //can't add this animal
-            }
+            return false;
         }
     }
 }

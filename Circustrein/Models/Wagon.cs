@@ -47,8 +47,18 @@ namespace Circustrein
             {
                 Full = true;
             }
+            IsTheAnimalTheSmallest(animal);
             Animals.Add(animal);
             Weight += (int)animal.AnimalSize;
+        }
+
+
+        private void IsTheAnimalTheSmallest(Animal animal)
+        {
+            if (SmallestAnimal >= animal.AnimalSize)
+            {
+                SmallestAnimal = animal.AnimalSize;
+            }
         }
 
 

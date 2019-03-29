@@ -29,11 +29,8 @@ namespace Circustrein
         public AnimalSize SmallestAnimal { get; set; }
         public bool ContainsCarnivore { get; set; }
         public bool SmallestAnimalIsCarnivore { get; set; }
+        
 
-        /// <summary>
-        /// Adds the animal to this wagon
-        /// </summary>
-        /// <param name="animal"></param>
         public void AddAnimal(Animal animal)
         {
             if (animal.FoodType == AnimalType.Carnivore)

@@ -1,26 +1,21 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Circustrein;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Circustrein;
 using static Circustrein.Enums;
+using Xunit;
 
-namespace Circustrein.Tests
+namespace CircusTests
 {
-    [TestClass()]
-    public class Form1Tests
+    public class CircusTests
     {
-
         Train train = new Train();
+
         
 
         //Should_ExpectedBehavior_When_StateUnderTest
 
 
         //Check for multiple carnivores in the wagons (more than 1 == false)
-        [TestMethod()]
+        [Fact]
         public void Should_NotAddCarn_When_TheWagonAlreadyHasAnCarn()
         {
             //Arrange
@@ -36,7 +31,7 @@ namespace Circustrein.Tests
             foreach (Wagon wagon in train.LoadWagons())
             {
                 int carnivoresInWagon = 0;
-                
+
                 foreach (Animal animal in wagon.Animals)
                 {
                     if (animal.FoodType == AnimalType.Carnivore)
@@ -45,14 +40,14 @@ namespace Circustrein.Tests
                     }
                 }
                 //Assert
-                Assert.IsFalse(carnivoresInWagon > 1);
+                Assert.False(carnivoresInWagon > 1);
             }
         }
 
         //Should_ExpectedBehavior_When_StateUnderTest
 
         //Check if the wagons weigh less than 10
-        [TestMethod()]
+        [Fact]
         public void Should_NotGoOverTheMaxWagonWeight_When_AddingAnimals()
         {
             //Arrange
@@ -75,7 +70,7 @@ namespace Circustrein.Tests
             foreach (Wagon wagon in train.LoadWagons())
             {
                 //Assert
-                Assert.IsTrue(wagon.Weight <= 10);
+                Assert.True(wagon.Weight <= 10);
             }
 
             //Act
@@ -85,11 +80,11 @@ namespace Circustrein.Tests
                 wagonCount++;
             }
             //Assert
-            Assert.IsTrue(wagonCount == 5);
+            Assert.True(wagonCount == 5);
             //7 when commenting the wagon.clear();
         }
 
-        [TestMethod()]
+        [Fact]
         public void Should_NotAddCarnToWagon_When_ItHasAnSmallerOrTheSameSizeHerb()
         {
             //Arrange
@@ -114,7 +109,8 @@ namespace Circustrein.Tests
             }
 
             //Assert
-            Assert.IsTrue(wagonCount == 6);
+            Assert.True(wagonCount == 6);
         }
     }
 }
+

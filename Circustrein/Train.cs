@@ -33,12 +33,10 @@ namespace Circustrein
             animals.Add(animal);
         }
 
-        
-
         /// <summary>
         /// Adds the animal to the wagons
         /// </summary>
-        public void AddAnimalToWagons()
+        public void AddAnimalsToWagons()
         {
             //first sort the animals to Carn and Herbs
             animalSorter.SortAnimals(animals, wagons);
@@ -54,11 +52,8 @@ namespace Circustrein
             }
 
             //first add the Carn to the wagon, after that you add the Herbs
-            AddAnimalToWagon(animalSorter.CarnivoreAnimals);
-            AddAnimalToWagon(animalSorter.HerbivoreAnimals);
-
-            animalSorter.CarnivoreAnimals.Clear();
-            animalSorter.HerbivoreAnimals.Clear();
+            AddAnimalsToWagon(animalSorter.CarnivoreAnimals);
+            AddAnimalsToWagon(animalSorter.HerbivoreAnimals);
             animals.Clear();
         }
 
@@ -67,7 +62,7 @@ namespace Circustrein
         /// Adds the animal to the wagon
         /// </summary>
         /// <param name="animals"></param>
-        public void AddAnimalToWagon(List<Animal> animals)
+        public void AddAnimalsToWagon(List<Animal> animals)
         {
             foreach (Animal animal in animals)
             {
@@ -97,7 +92,7 @@ namespace Circustrein
                 {
                     wagon.AddAnimal(animal);
 
-                    animalSorter.IsThisTheSmallestAnimal(animal, wagon);
+                    checkWagon.IsThisTheSmallestAnimal(animal, wagon);
 
                     return succes = true;
                     //you can add anything

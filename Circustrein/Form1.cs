@@ -34,7 +34,7 @@ namespace Circustrein
 
         private void buttonAddAnimalToWagons_Click(object sender, EventArgs e)
         {
-            train.AddAnimalToWagons();
+            train.AddAnimalsToWagons();
             UpdateInterface();
         }
 

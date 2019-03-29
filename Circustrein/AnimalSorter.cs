@@ -23,6 +23,9 @@ namespace Circustrein
         /// </summary>
         public void SortAnimals(List<Animal> animals, List<Wagon> wagons)
         {
+            CarnivoreAnimals.Clear();
+            HerbivoreAnimals.Clear();
+
             foreach (Wagon wagon in wagons)
             {
                 foreach (Animal animal in wagon.Animals)
@@ -62,35 +65,7 @@ namespace Circustrein
         }
 
 
-
-        /// <summary>
-        /// Checks if the to be added Animal is the smallest in the wagon
-        /// </summary>
-        /// <param name="animal"></param>
-        /// <param name="wagon"></param>
-        /// <returns></returns>
-        public bool IsThisTheSmallestAnimal(Animal animal, Wagon wagon)
-        {
-            //when the animal in the wagon is bigger than the to be added animal
-            if (wagon.SmallestAnimal >= animal.AnimalSize)
-            {
-                return false;
-            }
-            //when the animal in the wagon is smaller than the to be added animal and the to wagon has a Carn
-            else if (wagon.SmallestAnimal < animal.AnimalSize && wagon.SmallestAnimalIsCarnivore == true)
-            {
-                return true;
-            }
-            else
-            {
-                wagon.SmallestAnimal = animal.AnimalSize;
-                if (animal.FoodType == AnimalType.Carnivore)
-                {
-                    wagon.SmallestAnimalIsCarnivore = true;
-                }
-                return true;
-            }
-        }
+        
 
 
     }

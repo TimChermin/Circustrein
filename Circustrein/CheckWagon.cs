@@ -66,7 +66,7 @@ namespace Circustrein
                 if (animal.AnimalSize < wagon.SmallestAnimal && wagon.Weight + (int)animal.AnimalSize <= 10)
                 {
                     wagon.AddAnimal(animal);
-                    animalSorter.IsThisTheSmallestAnimal(animal, wagon);
+                    IsThisTheSmallestAnimal(animal, wagon);
                     return true;
                 }
             }
@@ -75,7 +75,7 @@ namespace Circustrein
                 if (wagon.Weight + (int)animal.AnimalSize <= 10)
                 {
                     wagon.AddAnimal(animal);
-                    animalSorter.IsThisTheSmallestAnimal(animal, wagon);
+                    IsThisTheSmallestAnimal(animal, wagon);
                     return true;
                 }
             }
@@ -94,13 +94,13 @@ namespace Circustrein
             if (animal.AnimalSize > wagon.SmallestAnimal && wagon.SmallestAnimalIsCarnivore == true && wagon.Weight + (int)animal.AnimalSize <= 10)
             {
                 wagon.AddAnimal(animal);
-                animalSorter.IsThisTheSmallestAnimal(animal, wagon);
+                IsThisTheSmallestAnimal(animal, wagon);
                 return true;
             }
             else if (wagon.SmallestAnimalIsCarnivore == false && wagon.Weight + (int)animal.AnimalSize <= 10)
             {
                 wagon.AddAnimal(animal);
-                animalSorter.IsThisTheSmallestAnimal(animal, wagon);
+                IsThisTheSmallestAnimal(animal, wagon);
                 return true;
             }
             else if (animal.AnimalSize > wagon.SmallestAnimal && wagon.Weight + (int)animal.AnimalSize <= 10)
@@ -109,6 +109,29 @@ namespace Circustrein
                 return true;
             }
             return false;
+        }
+
+        public bool IsThisTheSmallestAnimal(Animal animal, Wagon wagon)
+        {
+            //when the animal in the wagon is bigger than the to be added animal
+            if (wagon.SmallestAnimal >= animal.AnimalSize)
+            {
+                return false;
+            }
+            //when the animal in the wagon is smaller than the to be added animal and the to wagon has a Carn
+            else if (wagon.SmallestAnimal < animal.AnimalSize && wagon.SmallestAnimalIsCarnivore == true)
+            {
+                return true;
+            }
+            else
+            {
+                wagon.SmallestAnimal = animal.AnimalSize;
+                if (animal.FoodType == AnimalType.Carnivore)
+                {
+                    wagon.SmallestAnimalIsCarnivore = true;
+                }
+                return true;
+            }
         }
     }
 }

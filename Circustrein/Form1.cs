@@ -28,7 +28,7 @@ namespace Circustrein
         {
             AnimalType foodType = (AnimalType)Enum.Parse(typeof(AnimalType), comboBoxFoodType.Text);
             AnimalSize size = (AnimalSize)Enum.Parse(typeof(AnimalSize),comboBoxSize.Text);
-            train.AddAnimal(foodType, size);
+            train.AddAnimalToTrain(foodType, size);
             UpdateInterface();
         }
 
@@ -91,19 +91,19 @@ namespace Circustrein
 
                 if (i > 8 & i < 11)
                 {
-                    train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
+                    train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
                 }
                 else if (i < 3)
                 {
-                    train.AddAnimal(AnimalType.Carnivore, AnimalSize.Medium);
+                    train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
                 }
                 else if (i >= 3 && i <=8)
                 {
-                    train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
+                    train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
                 }
                 else
                 {
-                    train.AddAnimal(AnimalType.Herbivore, AnimalSize.Medium);
+                    train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Medium);
                 }
                 
             }

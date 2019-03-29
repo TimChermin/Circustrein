@@ -13,9 +13,6 @@ namespace Circustrein
         {
             Weight = 0;
             SmallestAnimal = AnimalSize.Nothing;
-            ContainsCarnivore = false;
-            SmallestAnimalIsCarnivore = false;
-            Full = false;
             Animals = new List<Animal>();
         }
 
@@ -23,9 +20,6 @@ namespace Circustrein
         {
             Animals = new List<Animal>();
             SmallestAnimal = AnimalSize.Nothing;
-            ContainsCarnivore = false;
-            SmallestAnimalIsCarnivore = false;
-            Full = false;
             AddAnimal(animal);
         }
 

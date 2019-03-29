@@ -19,6 +19,39 @@ namespace Circustrein
             this.animalSorter = animalSorter;
         }
 
+
+        /*
+         * public bool WhatIsTheWagonWeight(Animal animal, Wagon wagon)
+        {
+            if (wagon.Full != true)
+            {
+                if (wagon.Weight == 0)
+                {
+                    wagon.AddAnimal(animal);
+
+                    IsThisTheSmallestAnimal(animal, wagon);
+
+                    return true;
+                    //you can add anything
+                }
+                else
+                {
+                    return CanThisAnimalGoInTheWagon(wagon, animal);
+                }
+            }
+            return false;
+        }*/
+
+
+        public bool IsTheWagonEmpty(Wagon wagon)
+        {
+            if (wagon.Full == false && wagon.Weight == 0)
+            {
+                 return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Check if the animal can be added to the wagon
         /// </summary>
@@ -27,6 +60,8 @@ namespace Circustrein
         /// <returns></returns>
         public bool CanThisAnimalGoInTheWagon(Wagon wagon, Animal animal)
         {
+
+
             animalsInWagon = wagon.Animals;
             if (wagon.ContainsCarnivore == true)
             {

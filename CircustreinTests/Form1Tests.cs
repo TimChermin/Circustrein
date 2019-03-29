@@ -32,19 +32,19 @@ namespace Circustrein.Tests
         public void Should_NotAddCarn_When_TheWagonAlreadyHasAnCarn()
         {
             //Arrange
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimalToWagons();
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Big);
+            train.AddAnimalsToWagons();
 
             //Act
             foreach (Wagon wagon in train.LoadWagons())
             {
                 int carnivoresInWagon = 0;
-
-
+                
                 foreach (Animal animal in wagon.Animals)
                 {
                     if (animal.FoodType == AnimalType.Carnivore)
@@ -52,7 +52,6 @@ namespace Circustrein.Tests
                         carnivoresInWagon += 1;
                     }
                 }
-
                 //Assert
                 Assert.IsFalse(carnivoresInWagon > 1);
             }
@@ -65,20 +64,20 @@ namespace Circustrein.Tests
         public void Should_NotGoOverTheMaxWagonWeight_When_AddingAnimals()
         {
             //Arrange
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
-            train.AddAnimalToWagons();
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
+            train.AddAnimalsToWagons();
 
 
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Medium);
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Big);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Medium);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Medium);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Medium);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Medium);
-            train.AddAnimalToWagons();
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Medium);
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
+            train.AddAnimalsToWagons();
 
             //Act
             foreach (Wagon wagon in train.LoadWagons())
@@ -102,18 +101,18 @@ namespace Circustrein.Tests
         public void Should_NotAddCarnToWagon_When_ItHasAnSmallerOrTheSameSizeHerb()
         {
             //Arrange
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Herbivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Small);
 
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimal(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimalToWagons();
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
+            train.AddAnimalsToWagons();
 
             //Act
             int wagonCount = 0;

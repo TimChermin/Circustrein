@@ -19,12 +19,15 @@ namespace Circustrein
             this.animalSorter = animalSorter;
         }
 
-        /// <summary>
-        /// Check if the animal can be added to the wagon
-        /// </summary>
-        /// <param name="wagon"></param>
-        /// <param name="animal"></param>
-        /// <returns></returns>
+        public bool IsTheWagonEmpty(Wagon wagon)
+        {
+            if (wagon.Full == false && wagon.Weight == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        
         public bool CanThisAnimalGoInTheWagon(Wagon wagon, Animal animal)
         {
             animalsInWagon = wagon.Animals;
@@ -36,37 +39,29 @@ namespace Circustrein
                 }
                 else //(animal.FoodType == "Herbivore")
                 {
-                    //added this first
-                    return CarnInWagon(wagon, animal);
+                    return CheckSizeForCarnInWagon(wagon, animal);
                 }
             }
             else //doesn't have a carnivore 
             {
                 if (animal.FoodType == AnimalType.Carnivore)
                 {
-                    return CarnNotInWagon(wagon, animal);
+                    return CheckSizeForCarnNotInWagon(wagon, animal);
                 }
                 else // add herb
                 {
-                    return CarnNotInWagon(wagon, animal);
+                    return CheckSizeForCarnNotInWagon(wagon, animal);
                 }
             }
         }
+        
 
-        /// <summary>
-        /// Continue checken when there is no carn in the wagon yet
-        /// </summary>
-        /// <param name="wagon"></param>
-        /// <param name="animal"></param>
-        /// <returns></returns>
-        public bool CarnNotInWagon(Wagon wagon, Animal animal)
+        public bool CheckSizeForCarnNotInWagon(Wagon wagon, Animal animal)
         {
             if (animal.FoodType == AnimalType.Carnivore)
             {
                 if (animal.AnimalSize < wagon.SmallestAnimal && wagon.Weight + (int)animal.AnimalSize <= 10)
                 {
-                    wagon.AddAnimal(animal);
-                    animalSorter.IsThisTheSmallestAnimal(animal, wagon);
                     return true;
                 }
             }
@@ -74,38 +69,26 @@ namespace Circustrein
             {
                 if (wagon.Weight + (int)animal.AnimalSize <= 10)
                 {
-                    wagon.AddAnimal(animal);
-                    animalSorter.IsThisTheSmallestAnimal(animal, wagon);
                     return true;
                 }
             }
             return false;
         }
+        
 
-        /// <summary>
-        /// Continue checken when there is no carn in the wagon yet
-        /// </summary>
-        /// <param name="wagon"></param>
-        /// <param name="animal"></param>
-        /// <returns></returns>
-        public bool CarnInWagon(Wagon wagon, Animal animal)
+        public bool CheckSizeForCarnInWagon(Wagon wagon, Animal animal)
         {
             //this was for the herb when haveing a carn in the wagon
             if (animal.AnimalSize > wagon.SmallestAnimal && wagon.SmallestAnimalIsCarnivore == true && wagon.Weight + (int)animal.AnimalSize <= 10)
             {
-                wagon.AddAnimal(animal);
-                animalSorter.IsThisTheSmallestAnimal(animal, wagon);
                 return true;
             }
             else if (wagon.SmallestAnimalIsCarnivore == false && wagon.Weight + (int)animal.AnimalSize <= 10)
             {
-                wagon.AddAnimal(animal);
-                animalSorter.IsThisTheSmallestAnimal(animal, wagon);
                 return true;
             }
             else if (animal.AnimalSize > wagon.SmallestAnimal && wagon.Weight + (int)animal.AnimalSize <= 10)
             {
-                wagon.AddAnimal(animal);
                 return true;
             }
             return false;

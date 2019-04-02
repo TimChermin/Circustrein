@@ -31,9 +31,9 @@ namespace Circustrein
         public bool SmallestAnimalIsCarnivore { get; set; }
 
 
-        public bool IsTheWagonEmpty(Wagon wagon)
+        public bool IsTheWagonEmpty()
         {
-            if (wagon.Full == false && wagon.Weight == 0)
+            if (Full == false && Weight == 0)
             {
                 return true;
             }
@@ -43,14 +43,14 @@ namespace Circustrein
 
         public bool CanTheAnimalBeAdded(Wagon wagon, Animal animal)
         {
-            if (IsTheWagonEmpty(wagon) == false)
+            if (IsTheWagonEmpty() == false)
             {
                 if (animal.CanThisAnimalGoInTheWagon(wagon) == true)
                 {
                     return true;
                 }
             }
-            else if (IsTheWagonEmpty(wagon) == true)
+            else if (IsTheWagonEmpty() == true)
             {
                 return true;
             }

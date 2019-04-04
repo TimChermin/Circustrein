@@ -41,11 +41,11 @@ namespace Circustrein
         }
 
 
-        public bool CanTheAnimalBeAdded(Wagon wagon, Animal animal)
+        public bool CanTheAnimalBeAdded(Animal animal)
         {
             if (IsTheWagonEmpty() == false)
             {
-                if (animal.CanThisAnimalGoInTheWagon(wagon) == true)
+                if (animal.CanThisAnimalGoInTheWagon(ContainsCarnivore, SmallestAnimalIsCarnivore, Weight, SmallestAnimal) == true)
                 {
                     return true;
                 }

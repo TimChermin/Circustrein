@@ -49,7 +49,7 @@ namespace Circustrein
                 succes = false;
                 foreach (Wagon wagon in wagons)
                 {
-                    if (wagon.CanTheAnimalBeAdded(wagon, animal) == true)
+                    if (wagon.CanTheAnimalBeAdded(animal) == true)
                     {
                         wagon.AddAnimal(animal);
                         succes = true;

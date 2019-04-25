@@ -7,16 +7,19 @@ using static Circustrein.Enums;
 
 namespace Circustrein
 {
-    class AnimalSorter
+    public class AnimalSorter
     {
         public List<Animal> CarnivoreAnimals { get; set; }
         public List<Animal> HerbivoreAnimals { get; set; }
+        public List<Animal> Animals { get; set; }
+
+        public AnimalSorter()
+        {
+            Animals = new List<Animal>();
+        }
 
         public void SortAnimals(List<Animal> animals, List<Wagon> wagons)
         {
-            CarnivoreAnimals = new List<Animal>();
-            HerbivoreAnimals = new List<Animal>();
-
             if (wagons == null || animals == null)
             {
                 return;
@@ -26,30 +29,16 @@ namespace Circustrein
             {
                 foreach (Animal animal in wagon.Animals)
                 {
-                    if (animal.FoodType == AnimalType.Herbivore)
-                    {
-                        HerbivoreAnimals.Add(animal);
-                    }
-                    else //FoodType == Carnivores
-                    {
-                        CarnivoreAnimals.Add(animal);
-                    }
+                    Animals.Add(animal);
                 }
             }
 
             foreach (Animal animal in animals)
             {
-                if (animal.FoodType == AnimalType.Herbivore)
-                {
-                    HerbivoreAnimals.Add(animal);
-                }
-                else //FoodType == Carnivores
-                {
-                    CarnivoreAnimals.Add(animal);
-                }
+                Animals.Add(animal);
             }
-            CarnivoreAnimals = CarnivoreAnimals.OrderByDescending(animal => animal.AnimalSize).ToList();
-            HerbivoreAnimals = HerbivoreAnimals.OrderByDescending(animal => animal.AnimalSize).ToList();
+            Animals = Animals.OrderByDescending(animal => animal.AnimalSize).ToList();
+            Animals = Animals.OrderByDescending(animal => animal.FoodType).ToList();
         }
     }
 }

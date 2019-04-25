@@ -8,6 +8,7 @@ namespace CircusTests
     public class CircusTests
     {
         Train train = new Train();
+        AnimalSorter animalSorter = new AnimalSorter();
 
         
 
@@ -25,7 +26,7 @@ namespace CircusTests
             train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
             train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
             train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Big);
-            train.AddAnimalsToWagons();
+            AddAnimalsToWagons();
 
             //Act
             foreach (Wagon wagon in train.LoadWagons())
@@ -55,7 +56,7 @@ namespace CircusTests
             train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
             train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
             train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
-            train.AddAnimalsToWagons();
+            AddAnimalsToWagons();
 
 
             train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Medium);
@@ -64,7 +65,7 @@ namespace CircusTests
             train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
             train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
             train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
-            train.AddAnimalsToWagons();
+            AddAnimalsToWagons();
 
             //Act
             foreach (Wagon wagon in train.LoadWagons())
@@ -99,7 +100,7 @@ namespace CircusTests
             train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
             train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
             train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Small);
-            train.AddAnimalsToWagons();
+            AddAnimalsToWagons();
 
             //Act
             int wagonCount = 0;
@@ -110,6 +111,21 @@ namespace CircusTests
 
             //Assert
             Assert.True(wagonCount == 6);
+        }
+
+        [Fact]
+        public void AddAnimalsToWagons()
+        {
+            animalSorter.SortAnimals(train.animals, train.wagons);
+
+            train.wagons.Clear();
+            Wagon wagon = new Wagon();
+            train.wagons.Add(wagon);
+
+            //first add the Carn to the wagon, after that you add the Herbs
+            train.AddAnimalsToWagon(animalSorter.CarnivoreAnimals);
+            train.AddAnimalsToWagon(animalSorter.HerbivoreAnimals);
+            train.animals.Clear();
         }
     }
 }

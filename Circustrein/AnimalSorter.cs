@@ -9,8 +9,6 @@ namespace Circustrein
 {
     public class AnimalSorter
     {
-        public List<Animal> CarnivoreAnimals { get; set; }
-        public List<Animal> HerbivoreAnimals { get; set; }
         public List<Animal> Animals { get; set; }
 
         public AnimalSorter()

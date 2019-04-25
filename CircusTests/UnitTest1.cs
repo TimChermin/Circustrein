@@ -3,7 +3,7 @@ using Circustrein;
 using static Circustrein.Enums;
 using Xunit;
 
-namespace CircusTests
+namespace CircustreinTests
 {
     public class CircusTests
     {
@@ -58,15 +58,6 @@ namespace CircusTests
             train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
             AddAnimalsToWagons();
 
-
-            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Medium);
-            train.AddAnimalToTrain(AnimalType.Herbivore, AnimalSize.Big);
-            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
-            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
-            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
-            train.AddAnimalToTrain(AnimalType.Carnivore, AnimalSize.Medium);
-            AddAnimalsToWagons();
-
             //Act
             foreach (Wagon wagon in train.LoadWagons())
             {
@@ -81,7 +72,7 @@ namespace CircusTests
                 wagonCount++;
             }
             //Assert
-            Assert.True(wagonCount == 5);
+            Assert.True(wagonCount == 2);
             //7 when commenting the wagon.clear();
         }
 
@@ -123,8 +114,7 @@ namespace CircusTests
             train.wagons.Add(wagon);
 
             //first add the Carn to the wagon, after that you add the Herbs
-            train.AddAnimalsToWagon(animalSorter.CarnivoreAnimals);
-            train.AddAnimalsToWagon(animalSorter.HerbivoreAnimals);
+            train.AddAnimalsToWagon(animalSorter.Animals);
             train.animals.Clear();
         }
     }

@@ -7,7 +7,7 @@ using static Circustrein.Enums;
 
 namespace CircustreinTests
 {
-    public class AnimalSorterTest
+    public class AnimalSorterTests
     {
         Train train = new Train();
         List<Wagon> wagons = new List<Wagon>();
@@ -23,23 +23,19 @@ namespace CircustreinTests
             }
             animalSorter.SortAnimals(train.animals, wagons);
 
-
+            int animalCount = 0;
+            foreach (Animal animal in animalSorter.Animals)
+            {
+                if (animalCount < 10)
+                {
+                    Assert.True(animal.FoodType == AnimalType.Carnivore);
+                }
+                else
+                {
+                    Assert.True(animal.FoodType == AnimalType.Herbivore);
+                }
+                animalCount++;
+            }
         }
-
-
-        public void AddAnimalsToWagons()
-        {
-            animalSorter.SortAnimals(train.animals, wagons);
-
-            train.wagons.Clear();
-            Wagon wagon = new Wagon();
-            train.wagons.Add(wagon);
-
-            //first add the Carn to the wagon, after that you add the Herbs
-            train.AddAnimalsToWagon(animalSorter.CarnivoreAnimals);
-            train.AddAnimalsToWagon(animalSorter.HerbivoreAnimals);
-            train.animals.Clear();
-        }
-
     }
 }

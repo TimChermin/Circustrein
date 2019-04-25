@@ -19,7 +19,7 @@ namespace Circustrein
         public Wagon(Animal animal)
         {
             Animals = new List<Animal>();
-            SmallestAnimal = AnimalSize.Nothing;
+            SmallestAnimal = animal.AnimalSize;
             AddAnimal(animal);
         }
 

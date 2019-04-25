@@ -30,11 +30,34 @@ namespace Circustrein
         public bool ContainsCarnivore { get; set; }
         public bool SmallestAnimalIsCarnivore { get; set; }
 
-        /// <summary>
-        /// Adds the animal to this wagon
-        /// </summary>
-        /// <param name="animal"></param>
-        public void AddAnimal(Animal animal)
+        public bool IsTheWagonEmpty()
+        {
+            if (Full == false && Weight == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool TryToAddTheAnimal(Animal animal)
+        {
+            if (IsTheWagonEmpty() == false)
+            {
+                if (animal.CanThisAnimalGoInTheWagon(ContainsCarnivore, SmallestAnimalIsCarnivore, Weight, SmallestAnimal) == true)
+                {
+                    AddAnimal(animal);
+                    return true;
+                }
+            }
+            else if (IsTheWagonEmpty() == true)
+            {
+                AddAnimal(animal);
+                return true;
+            }
+            return false;
+        }
+
+        private void AddAnimal(Animal animal)
         {
             if (animal.FoodType == AnimalType.Carnivore)
             {
@@ -52,7 +75,6 @@ namespace Circustrein
             Weight += (int)animal.AnimalSize;
         }
 
-
         private void IsTheAnimalTheSmallest(Animal animal)
         {
             if (SmallestAnimal >= animal.AnimalSize)
@@ -60,7 +82,6 @@ namespace Circustrein
                 SmallestAnimal = animal.AnimalSize;
             }
         }
-
 
         public override string ToString()
         {

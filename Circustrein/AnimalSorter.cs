@@ -9,14 +9,9 @@ namespace Circustrein
 {
     class AnimalSorter
     {
-
         public List<Animal> CarnivoreAnimals { get; set; }
         public List<Animal> HerbivoreAnimals { get; set; }
-        
-        
-        /// <summary>
-        /// Sorts the Animals into Herbivores and Carnivores
-        /// </summary>
+
         public void SortAnimals(List<Animal> animals, List<Wagon> wagons)
         {
             CarnivoreAnimals = new List<Animal>();

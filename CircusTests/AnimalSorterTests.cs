@@ -11,6 +11,7 @@ namespace CircustreinTests
     {
         Train train = new Train();
         List<Wagon> wagons = new List<Wagon>();
+        Wagon wagon = new Wagon(new Animal(AnimalType.Carnivore, AnimalSize.Small));
         AnimalSorter animalSorter = new AnimalSorter();
 
         [Fact]
@@ -21,12 +22,13 @@ namespace CircustreinTests
                 train.animals.Add(new Animal(AnimalType.Carnivore, AnimalSize.Small));
                 train.animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Small));
             }
+            wagons.Add(wagon);
             animalSorter.SortAnimals(train.animals, wagons);
 
             int animalCount = 0;
             foreach (Animal animal in animalSorter.Animals)
             {
-                if (animalCount < 10)
+                if (animalCount < 11)
                 {
                     Assert.True(animal.FoodType == AnimalType.Carnivore);
                 }

@@ -87,13 +87,13 @@ namespace Circustrein
         {
             animalSorter.SortAnimals(train.animals, wagons);
 
-            wagons.Clear();
+            train.wagons.Clear();
             Wagon wagon = new Wagon();
             train.wagons.Add(wagon);
 
             //first add the Carn to the wagon, after that you add the Herbs
-            train.AddAnimalsToWagon(animalSorter.CarnivoreAnimals);
-            train.AddAnimalsToWagon(animalSorter.HerbivoreAnimals);
+            train.AddAnimalsToWagon(animalSorter.Animals);
+            animalSorter.Animals.Clear();
             train.animals.Clear();
         }
 

@@ -29,21 +29,14 @@ namespace Circustrein
                 {
                     return false;
                 }
-                else //(animal.FoodType == "Herbivore")
+                else
                 {
                     return CheckSizeForCarnInWagon(smallestAnimalIsCarnivore, wagonWeight, smallestAnimal);
                 }
             }
-            else //doesn't have a carnivore 
+            else
             {
-                if (FoodType == AnimalType.Carnivore)
-                {
-                    return CheckSizeForCarnNotInWagon(wagonWeight, smallestAnimal);
-                }
-                else // add herb
-                {
-                    return CheckSizeForCarnNotInWagon(wagonWeight, smallestAnimal);
-                }
+                return CheckSizeForCarnNotInWagon(wagonWeight, smallestAnimal);
             }
         }
 
@@ -68,7 +61,6 @@ namespace Circustrein
 
         public bool CheckSizeForCarnInWagon(bool smallestAnimalIsCarnivore, int wagonWeight, AnimalSize smallestAnimal)
         {
-            //this was for the herb when haveing a carn in the wagon
             if (AnimalSize > smallestAnimal && smallestAnimalIsCarnivore == true && wagonWeight + (int)AnimalSize <= 10)
             {
                 return true;

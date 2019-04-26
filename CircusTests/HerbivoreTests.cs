@@ -25,7 +25,5 @@ namespace CircustreinTests
             Assert.True(animalHerbMed.CheckSizeForCarnNotInWagon(train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
             Assert.True(animalHerbBig.CheckSizeForCarnNotInWagon(train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
         }
-
-
     }
 }

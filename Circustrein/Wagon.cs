@@ -65,11 +65,7 @@ namespace Circustrein
                 SmallestAnimalIsCarnivore = true;
                 SmallestAnimal = animal.AnimalSize;
             }
-            
-            if ((animal.AnimalSize == AnimalSize.Big && animal.FoodType == AnimalType.Carnivore) || (Weight == 10))
-            {
-                Full = true;
-            }
+
             IsTheAnimalTheSmallest(animal);
             Animals.Add(animal);
             Weight += (int)animal.AnimalSize;

@@ -16,10 +16,10 @@ namespace CircustreinTests
         [Fact]
         public void Should_AddAnimalToTheTrain_When_AddingAnimalsToTheTrain()
         {
-            //Arrange
             train.AddAnimalToTrain(animal.FoodType, animal.AnimalSize);
             train.AddAnimalToTrain(animal2.FoodType, animal2.AnimalSize);
 
+            
             Assert.True(train.animals[0].FoodType == animal.FoodType && train.animals[0].AnimalSize == animal.AnimalSize);
             Assert.True(train.animals[1].FoodType == animal2.FoodType && train.animals[1].AnimalSize == animal2.AnimalSize);
         }
@@ -27,7 +27,6 @@ namespace CircustreinTests
         [Fact]
         public void Should_AddAnimalsToTheWagons_When_AddingAnimalsToTheWagons()
         {
-            //Arrange
             List<Animal> animals = new List<Animal>();
             animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Big));
             animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Big));
@@ -35,9 +34,9 @@ namespace CircustreinTests
             animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Medium));
             animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Medium));
             animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Small));
-
+            
             train.AddAnimalsToWagon(animals);
-
+            
             Assert.True(train.LoadWagons()[0].Animals[0].AnimalSize == AnimalSize.Big);
             Assert.True(train.LoadWagons()[0].Animals[1].AnimalSize == AnimalSize.Big);
             Assert.True(train.LoadWagons()[1].Animals[0].AnimalSize == AnimalSize.Medium);

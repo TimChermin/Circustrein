@@ -14,13 +14,12 @@ namespace CircustreinTests
         [Fact]
         public void Should_NotAddCarn_When_TheWagonAlreadyHasACarn()
         {
-            //Arrange
             train.wagons.Add(new Wagon(new Animal(AnimalType.Carnivore, AnimalSize.Medium)));
             train.wagons.Add(new Wagon(new Animal(AnimalType.Herbivore, AnimalSize.Medium)));
             Animal animal = new Animal(AnimalType.Carnivore, AnimalSize.Small);
             Animal animal2 = new Animal(AnimalType.Herbivore, AnimalSize.Big);
 
-            //Act
+            
             Assert.False(animal.CanThisAnimalGoInTheWagon(train.wagons[0].ContainsCarnivore, train.wagons[0].SmallestAnimalIsCarnivore, train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
             Assert.True(animal.CanThisAnimalGoInTheWagon(train.wagons[1].ContainsCarnivore, train.wagons[1].SmallestAnimalIsCarnivore, train.wagons[1].Weight, train.wagons[1].SmallestAnimal));
             Assert.True(animal2.CanThisAnimalGoInTheWagon(train.wagons[0].ContainsCarnivore, train.wagons[0].SmallestAnimalIsCarnivore, train.wagons[0].Weight, train.wagons[0].SmallestAnimal));

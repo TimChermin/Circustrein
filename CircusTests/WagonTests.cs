@@ -13,7 +13,6 @@ namespace CircustreinTests
         [Fact]
         public void Should_ReturnTrue_When_TheWagonIsEmpty()
         {
-            //Arrange
             wagon2.TryToAddTheAnimal(new Animal(AnimalType.Herbivore, AnimalSize.Big));
             
             Assert.True(wagon.IsTheWagonEmpty());

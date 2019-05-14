@@ -21,7 +21,7 @@ namespace Circustrein
         public AnimalType FoodType { get; set; }
         public AnimalSize AnimalSize { get; set; }
 
-        public bool CanThisAnimalGoInTheWagon(bool containsCarnivore, bool smallestAnimalIsCarnivore, int wagonWeight, AnimalSize smallestAnimal)
+        public bool WillThisAnimalNotEatOrGetEatenByAnother(bool containsCarnivore, bool smallestAnimalIsCarnivore, AnimalSize smallestAnimal)
         {
             if (containsCarnivore == true)
             {
@@ -31,41 +31,38 @@ namespace Circustrein
                 }
                 else
                 {
-                    return CheckSizeForCarnInWagon(smallestAnimalIsCarnivore, wagonWeight, smallestAnimal);
+                    return WillThisAnimalNotEatOrGetEatenByTheCarn(smallestAnimalIsCarnivore, smallestAnimal);
                 }
             }
             else
             {
-                return CheckSizeForCarnNotInWagon(wagonWeight, smallestAnimal);
+                return WillThisAnimalNotEatOrGetEaten(smallestAnimal);
             }
         }
 
-        public bool CheckSizeForCarnNotInWagon(int wagonWeight, AnimalSize smallestAnimal)
+        public bool WillThisAnimalNotEatOrGetEaten(AnimalSize smallestAnimal)
         {
             if (FoodType == AnimalType.Carnivore)
             {
-                if (AnimalSize < smallestAnimal && wagonWeight + (int)AnimalSize <= 10)
+                if (AnimalSize < smallestAnimal)
                 {
                     return true;
                 }
             }
             else if (FoodType != AnimalType.Carnivore)
             {
-                if (wagonWeight + (int)AnimalSize <= 10)
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }
 
-        public bool CheckSizeForCarnInWagon(bool smallestAnimalIsCarnivore, int wagonWeight, AnimalSize smallestAnimal)
+        public bool WillThisAnimalNotEatOrGetEatenByTheCarn(bool smallestAnimalIsCarnivore, AnimalSize smallestAnimal)
         {
-            if (AnimalSize > smallestAnimal && smallestAnimalIsCarnivore == true && wagonWeight + (int)AnimalSize <= 10)
+            if (AnimalSize > smallestAnimal && smallestAnimalIsCarnivore == true)
             {
                 return true;
             }
-            else if (AnimalSize > smallestAnimal && wagonWeight + (int)AnimalSize <= 10)
+            else if (AnimalSize > smallestAnimal)
             {
                 return true;
             }

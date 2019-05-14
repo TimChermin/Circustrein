@@ -15,7 +15,6 @@ namespace Circustrein
             SmallestAnimal = AnimalSize.Nothing;
             Animals = new List<Animal>();
         }
-
         public Wagon(Animal animal)
         {
             Animals = new List<Animal>();
@@ -43,7 +42,7 @@ namespace Circustrein
         {
             if (IsTheWagonEmpty() == false)
             {
-                if (animal.CanThisAnimalGoInTheWagon(ContainsCarnivore, SmallestAnimalIsCarnivore, Weight, SmallestAnimal) == true)
+                if (animal.WillThisAnimalNotEatOrGetEatenByAnother(ContainsCarnivore, SmallestAnimalIsCarnivore, SmallestAnimal) == true && WillTheWagonGoOverMaxWeight(animal))
                 {
                     AddAnimal(animal);
                     return true;
@@ -65,7 +64,6 @@ namespace Circustrein
                 SmallestAnimalIsCarnivore = true;
                 SmallestAnimal = animal.AnimalSize;
             }
-
             IsTheAnimalTheSmallest(animal);
             Animals.Add(animal);
             Weight += (int)animal.AnimalSize;
@@ -79,6 +77,14 @@ namespace Circustrein
             }
         }
 
+        public bool WillTheWagonGoOverMaxWeight(Animal animal)
+        {
+            if (Weight + (int)animal.AnimalSize <= 10)
+            {
+                return true;
+            }
+            return false;
+        }
         public override string ToString()
         {
             string wagons = "";

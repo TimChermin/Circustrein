@@ -9,21 +9,25 @@ namespace CircustreinTests
 {
     public class HerbivoreTests
     {
-        Train train = new Train();
 
         [Fact]
-        public void Should_NotAddAnimal_When_AddingAnotherAnimalWouldGoOverTheMaxWeight()
+        public void Should_AddAnimal_When_AddingAnotherHerb()
         {
-            train.wagons.Add(new Wagon(new Animal(AnimalType.Herbivore, AnimalSize.Big)));
-            train.wagons.Add(new Wagon(new Animal(AnimalType.Herbivore, AnimalSize.Big)));
-
+            //Arrange
+            Wagon wagon = new Wagon(new Animal(AnimalType.Herbivore, AnimalSize.Big));
             Animal animalHerbSmall = new Animal(AnimalType.Herbivore, AnimalSize.Small);
             Animal animalHerbMed = new Animal(AnimalType.Herbivore, AnimalSize.Medium);
             Animal animalHerbBig = new Animal(AnimalType.Herbivore, AnimalSize.Big);
 
-            Assert.True(animalHerbSmall.CheckSizeForCarnNotInWagon(train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
-            Assert.True(animalHerbMed.CheckSizeForCarnNotInWagon(train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
-            Assert.True(animalHerbBig.CheckSizeForCarnNotInWagon(train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
+            //Act
+            bool result1 = animalHerbSmall.WillThisAnimalNotEatOrGetEaten(wagon.SmallestAnimal);
+            bool result2 = animalHerbMed.WillThisAnimalNotEatOrGetEaten(wagon.SmallestAnimal);
+            bool result3 = animalHerbBig.WillThisAnimalNotEatOrGetEaten(wagon.SmallestAnimal);
+
+            //Assert
+            Assert.True(result1);
+            Assert.True(result2);
+            Assert.True(result3);
         }
     }
 }

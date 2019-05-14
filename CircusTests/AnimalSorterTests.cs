@@ -17,14 +17,18 @@ namespace CircustreinTests
         [Fact]
         public void Should_SortAnimals_When_SortingTheAnimals()
         {
+            //Arrange
             for (int i = 0; i < 10; i++)
             {
                 train.animals.Add(new Animal(AnimalType.Carnivore, AnimalSize.Small));
                 train.animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Small));
             }
             wagons.Add(wagon);
+
+            //Act
             animalSorter.SortAnimals(train.animals, wagons);
 
+            //Assert
             int animalCount = 0;
             foreach (Animal animal in animalSorter.Animals)
             {

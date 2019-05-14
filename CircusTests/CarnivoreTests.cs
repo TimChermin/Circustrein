@@ -9,34 +9,44 @@ namespace CircustreinTests
 {
     public class CarnivoreTests
     {
-        Train train = new Train();
-
         [Fact]
         public void Should_NotAddCarn_When_TheWagonAlreadyHasACarn()
         {
-            train.wagons.Add(new Wagon(new Animal(AnimalType.Carnivore, AnimalSize.Medium)));
-            train.wagons.Add(new Wagon(new Animal(AnimalType.Herbivore, AnimalSize.Medium)));
+            //Arrange
+            Wagon wagon = new Wagon(new Animal(AnimalType.Carnivore, AnimalSize.Medium));
+            Wagon wagon2 = new Wagon(new Animal(AnimalType.Herbivore, AnimalSize.Medium));
             Animal animal = new Animal(AnimalType.Carnivore, AnimalSize.Small);
             Animal animal2 = new Animal(AnimalType.Herbivore, AnimalSize.Big);
 
-            
-            Assert.False(animal.CanThisAnimalGoInTheWagon(train.wagons[0].ContainsCarnivore, train.wagons[0].SmallestAnimalIsCarnivore, train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
-            Assert.True(animal.CanThisAnimalGoInTheWagon(train.wagons[1].ContainsCarnivore, train.wagons[1].SmallestAnimalIsCarnivore, train.wagons[1].Weight, train.wagons[1].SmallestAnimal));
-            Assert.True(animal2.CanThisAnimalGoInTheWagon(train.wagons[0].ContainsCarnivore, train.wagons[0].SmallestAnimalIsCarnivore, train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
+            //Act
+            bool result1 = animal.WillThisAnimalNotEatOrGetEatenByAnother(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool result2 = animal.WillThisAnimalNotEatOrGetEatenByAnother(wagon2.ContainsCarnivore, wagon2.SmallestAnimalIsCarnivore, wagon2.SmallestAnimal);
+            bool result3 = animal2.WillThisAnimalNotEatOrGetEatenByAnother(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+
+            //Assert
+            Assert.False(result1);
+            Assert.True(result2);
+            Assert.True(result3);
         }
 
         [Fact]
         public void Should_NotAddHerb_When_TheWagonAlreadyHasABiggerCarn()
         {
-            train.wagons.Add(new Wagon(new Animal(AnimalType.Carnivore, AnimalSize.Medium)));
-            
+            //Arrange
+            Wagon wagon = new Wagon(new Animal(AnimalType.Carnivore, AnimalSize.Medium));
             Animal animalHerbSmall = new Animal(AnimalType.Herbivore, AnimalSize.Small);
             Animal animalHerbMed = new Animal(AnimalType.Herbivore, AnimalSize.Medium);
             Animal animalHerbBig = new Animal(AnimalType.Herbivore, AnimalSize.Big);
 
-            Assert.False(animalHerbSmall.CheckSizeForCarnInWagon(train.wagons[0].SmallestAnimalIsCarnivore, train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
-            Assert.False(animalHerbMed.CheckSizeForCarnInWagon(train.wagons[0].SmallestAnimalIsCarnivore, train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
-            Assert.True(animalHerbBig.CheckSizeForCarnInWagon(train.wagons[0].SmallestAnimalIsCarnivore, train.wagons[0].Weight, train.wagons[0].SmallestAnimal));
+            //Act
+            bool result1 = animalHerbSmall.WillThisAnimalNotEatOrGetEatenByTheCarn(wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool result2 = animalHerbMed.WillThisAnimalNotEatOrGetEatenByTheCarn(wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool result3 = animalHerbBig.WillThisAnimalNotEatOrGetEatenByTheCarn(wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+
+            //Assert
+            Assert.False(result1);
+            Assert.False(result2);
+            Assert.True(result3);
         }
     }
 }

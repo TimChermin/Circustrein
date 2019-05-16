@@ -24,31 +24,14 @@ namespace Circustrein
 
         public int Weight { get; set; }
         public List<Animal> Animals { get; set; }
-        public bool Full { get; set; }
         public AnimalSize SmallestAnimal { get; set; }
         public bool ContainsCarnivore { get; set; }
         public bool SmallestAnimalIsCarnivore { get; set; }
-
-        public bool IsTheWagonEmpty()
-        {
-            if (Full == false && Weight == 0)
-            {
-                return true;
-            }
-            return false;
-        }
+        
 
         public bool TryToAddTheAnimal(Animal animal)
         {
-            if (IsTheWagonEmpty() == false)
-            {
-                if (animal.WillThisAnimalNotEatOrGetEatenByAnother(ContainsCarnivore, SmallestAnimalIsCarnivore, SmallestAnimal) == true && WillTheWagonGoOverMaxWeight(animal))
-                {
-                    AddAnimal(animal);
-                    return true;
-                }
-            }
-            else if (IsTheWagonEmpty() == true)
+            if (animal.ThisAnimalWontEatOrGetEatenWhenAdded(ContainsCarnivore, SmallestAnimalIsCarnivore, SmallestAnimal) && AddingTheAnimalWontGoOverMaxWeight(animal))
             {
                 AddAnimal(animal);
                 return true;
@@ -77,7 +60,7 @@ namespace Circustrein
             }
         }
 
-        public bool WillTheWagonGoOverMaxWeight(Animal animal)
+        private bool AddingTheAnimalWontGoOverMaxWeight(Animal animal)
         {
             if (Weight + (int)animal.AnimalSize <= 10)
             {

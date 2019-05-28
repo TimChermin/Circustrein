@@ -8,57 +8,53 @@ namespace CircustreinTests
 {
     public class TrainTests
     {
-        Train train = new Train();
-        Train train2 = new Train();
-        Animal animal = new Animal(AnimalType.Herbivore, AnimalSize.Big);
-        Animal animal2 = new Animal(AnimalType.Carnivore, AnimalSize.Big);
-
         [Fact]
         public void Should_AddAnimalToTheTrain_When_AddingAnimalsToTheTrain()
         {
             //Arrange
-            train.AddAnimalToTrain(animal.FoodType, animal.AnimalSize);
-            train.AddAnimalToTrain(animal2.FoodType, animal2.AnimalSize);
-
+            Train train = new Train();
+            Animal animal = new Animal(AnimalType.Herbivore, AnimalSize.Big);
+            
             //Act
-            bool AnimalAddedToTrain = (train.animals[0].FoodType == animal.FoodType && train.animals[0].AnimalSize == animal.AnimalSize);
-            bool AnimalAddedToTrain2 = (train.animals[1].FoodType == animal2.FoodType && train.animals[1].AnimalSize == animal2.AnimalSize);
+            train.AddAnimalToTrain(animal.FoodType, animal.AnimalSize);
+            bool AnimalAddedToTrain = (train.Animals[0].FoodType == animal.FoodType && train.Animals[0].AnimalSize == animal.AnimalSize);
 
             //Assert
             Assert.True(AnimalAddedToTrain);
-            Assert.True(AnimalAddedToTrain2);
         }
+
 
         [Fact]
         public void Should_AddAnimalsToTheWagons_When_AddingAnimalsToTheWagons()
         {
             //Arrange
+            Train train = new Train();
+            train.Wagons.Add(new Wagon());
             List<Animal> animals = new List<Animal>();
             animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Big));
-            animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Big));
-            animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Medium));
-            animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Medium));
-            animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Medium));
-            animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Small));
-            
+
             //Act
             train.AddAnimalsToWagon(animals);
-            bool animal1Added = (train.LoadWagons()[0].Animals[0].AnimalSize == AnimalSize.Big);
-            bool animal2Added = (train.LoadWagons()[0].Animals[1].AnimalSize == AnimalSize.Big);
-            bool animal3Added = (train.LoadWagons()[1].Animals[0].AnimalSize == AnimalSize.Medium);
-            bool animal4Added = (train.LoadWagons()[1].Animals[1].AnimalSize == AnimalSize.Medium);
-            bool animal5Added = (train.LoadWagons()[1].Animals[2].AnimalSize == AnimalSize.Medium);
-            bool animal6Added = (train.LoadWagons()[1].Animals[3].AnimalSize == AnimalSize.Small);
+            bool animal1Added = (train.Wagons[0].Animals[0].AnimalSize == AnimalSize.Big);
 
             //Assert
             Assert.True(animal1Added);
-            Assert.True(animal1Added);
-            Assert.True(animal1Added);
-            Assert.True(animal1Added);
-            Assert.True(animal1Added);
-            Assert.True(animal1Added);
-
         }
 
+        [Fact]
+        public void Should_AddAnimalsToTheNewWagon_When_AddingAnimalsToTheWagons()
+        {
+            //Arrange
+            Train train = new Train();
+            List<Animal> animals = new List<Animal>();
+            animals.Add(new Animal(AnimalType.Herbivore, AnimalSize.Big));
+
+            //Act
+            train.AddAnimalsToWagon(animals);
+            bool animal1Added = (train.Wagons[0].Animals[0].AnimalSize == AnimalSize.Big);
+
+            //Assert
+            Assert.True(animal1Added);
+        }
     }
 }

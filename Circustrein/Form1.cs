@@ -51,7 +51,7 @@ namespace Circustrein
         private void LoadAnimals()
         {
             List<Animal> animals = new List<Animal>();
-            animals = train.LoadAnimals();
+            animals = train.Animals;
             listBoxAnimals.Items.Clear();
             foreach (Animal animal in animals)
             {
@@ -61,7 +61,7 @@ namespace Circustrein
 
         private void LoadWagons()
         {
-            wagons = train.LoadWagons();
+            wagons = train.Wagons;
             listBoxWagons.Items.Clear();
             foreach (Wagon wagon in wagons)
             {
@@ -85,16 +85,15 @@ namespace Circustrein
 
         public void AddAnimalsToWagons()
         {
-            animalSorter.SortAnimals(train.animals, wagons);
+            animalSorter.SortAnimals(train.Animals, wagons);
 
-            train.wagons.Clear();
+            train.Wagons.Clear();
             Wagon wagon = new Wagon();
-            train.wagons.Add(wagon);
-
-            //first add the Carn to the wagon, after that you add the Herbs
+            train.Wagons.Add(wagon);
+            
             train.AddAnimalsToWagon(animalSorter.Animals);
             animalSorter.Animals.Clear();
-            train.animals.Clear();
+            train.Animals.Clear();
         }
 
         /// <summary>

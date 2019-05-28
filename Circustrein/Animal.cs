@@ -31,7 +31,7 @@ namespace Circustrein
                 }
                 else
                 {
-                    return WontEatOrGetEatenByTheCarnInTheWagon(smallestAnimalIsCarnivore, smallestAnimal);
+                    return WontEatOrGetEaten(smallestAnimalIsCarnivore, smallestAnimal);
                 }
             }
             else
@@ -56,7 +56,7 @@ namespace Circustrein
             return false;
         }
 
-        private bool WontEatOrGetEatenByTheCarnInTheWagon(bool smallestAnimalIsCarnivore, AnimalSize smallestAnimal)
+        private bool WontEatOrGetEaten(bool smallestAnimalIsCarnivore, AnimalSize smallestAnimal)
         {
             if (AnimalSize > smallestAnimal && smallestAnimalIsCarnivore == true)
             {

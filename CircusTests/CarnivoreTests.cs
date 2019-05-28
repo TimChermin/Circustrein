@@ -19,14 +19,13 @@ namespace CircustreinTests
             Animal animal2 = new Animal(AnimalType.Herbivore, AnimalSize.Big);
 
             //Act
-            bool result1 = animal.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
-            bool result2 = animal.WontEatOrGetEatenWhenAdded(wagon2.ContainsCarnivore, wagon2.SmallestAnimalIsCarnivore, wagon2.SmallestAnimal);
-            bool result3 = animal2.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool AnimalWontGetEaten2 = animal.WontEatOrGetEatenWhenAdded(wagon2.ContainsCarnivore, wagon2.SmallestAnimalIsCarnivore, wagon2.SmallestAnimal);
+            bool AnimalWontGetEaten3 = animal2.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
 
             //Assert
-            Assert.False(result1);
-            Assert.True(result2);
-            Assert.True(result3);
+            Assert.False(AnimalWontGetEaten1);
+            Assert.True(AnimalWontGetEaten2);
+            Assert.True(AnimalWontGetEaten3);
         }
 
         [Fact]
@@ -39,14 +38,14 @@ namespace CircustreinTests
             Animal animalHerbBig = new Animal(AnimalType.Herbivore, AnimalSize.Big);
 
             //Act
-            bool result1 = animalHerbSmall.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
-            bool result2 = animalHerbMed.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
-            bool result3 = animalHerbBig.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool AnimalWontGetEaten1 = animalHerbSmall.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool AnimalWontGetEaten2 = animalHerbMed.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool AnimalWontGetEaten3 = animalHerbBig.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
 
             //Assert
-            Assert.False(result1);
-            Assert.False(result2);
-            Assert.True(result3);
+            Assert.False(AnimalWontGetEaten1);
+            Assert.False(AnimalWontGetEaten2);
+            Assert.True(AnimalWontGetEaten3);
         }
     }
 }

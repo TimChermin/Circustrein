@@ -20,14 +20,14 @@ namespace CircustreinTests
             Animal animalHerbBig = new Animal(AnimalType.Herbivore, AnimalSize.Big);
 
             //Act
-            bool result1 = animalHerbSmall.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
-            bool result2 = animalHerbMed.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
-            bool result3 = animalHerbBig.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool AnimalWontGetEaten1 = animalHerbSmall.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool AnimalWontGetEaten2 = animalHerbMed.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
+            bool AnimalWontGetEaten3 = animalHerbBig.WontEatOrGetEatenWhenAdded(wagon.ContainsCarnivore, wagon.SmallestAnimalIsCarnivore, wagon.SmallestAnimal);
 
             //Assert
-            Assert.True(result1);
-            Assert.True(result2);
-            Assert.True(result3);
+            Assert.True(AnimalWontGetEaten1);
+            Assert.True(AnimalWontGetEaten2);
+            Assert.True(AnimalWontGetEaten3);
         }
     }
 }

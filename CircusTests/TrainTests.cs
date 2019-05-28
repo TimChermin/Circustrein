@@ -21,12 +21,12 @@ namespace CircustreinTests
             train.AddAnimalToTrain(animal2.FoodType, animal2.AnimalSize);
 
             //Act
-            bool result1 = train.animals[0].FoodType == animal.FoodType && train.animals[0].AnimalSize == animal.AnimalSize;
-            bool result2 = train.animals[1].FoodType == animal2.FoodType && train.animals[1].AnimalSize == animal2.AnimalSize;
+            bool AnimalAddedToTrain = (train.animals[0].FoodType == animal.FoodType && train.animals[0].AnimalSize == animal.AnimalSize);
+            bool AnimalAddedToTrain2 = (train.animals[1].FoodType == animal2.FoodType && train.animals[1].AnimalSize == animal2.AnimalSize);
 
             //Assert
-            Assert.True(result1);
-            Assert.True(result2);
+            Assert.True(AnimalAddedToTrain);
+            Assert.True(AnimalAddedToTrain2);
         }
 
         [Fact]
@@ -43,14 +43,20 @@ namespace CircustreinTests
             
             //Act
             train.AddAnimalsToWagon(animals);
-            
+            bool animal1Added = (train.LoadWagons()[0].Animals[0].AnimalSize == AnimalSize.Big);
+            bool animal2Added = (train.LoadWagons()[0].Animals[1].AnimalSize == AnimalSize.Big);
+            bool animal3Added = (train.LoadWagons()[1].Animals[0].AnimalSize == AnimalSize.Medium);
+            bool animal4Added = (train.LoadWagons()[1].Animals[1].AnimalSize == AnimalSize.Medium);
+            bool animal5Added = (train.LoadWagons()[1].Animals[2].AnimalSize == AnimalSize.Medium);
+            bool animal6Added = (train.LoadWagons()[1].Animals[3].AnimalSize == AnimalSize.Small);
+
             //Assert
-            Assert.True(train.LoadWagons()[0].Animals[0].AnimalSize == AnimalSize.Big);
-            Assert.True(train.LoadWagons()[0].Animals[1].AnimalSize == AnimalSize.Big);
-            Assert.True(train.LoadWagons()[1].Animals[0].AnimalSize == AnimalSize.Medium);
-            Assert.True(train.LoadWagons()[1].Animals[1].AnimalSize == AnimalSize.Medium);
-            Assert.True(train.LoadWagons()[1].Animals[2].AnimalSize == AnimalSize.Medium);
-            Assert.True(train.LoadWagons()[1].Animals[3].AnimalSize == AnimalSize.Small);
+            Assert.True(animal1Added);
+            Assert.True(animal1Added);
+            Assert.True(animal1Added);
+            Assert.True(animal1Added);
+            Assert.True(animal1Added);
+            Assert.True(animal1Added);
 
         }
 

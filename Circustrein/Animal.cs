@@ -21,7 +21,7 @@ namespace Circustrein
         public AnimalType FoodType { get; set; }
         public AnimalSize AnimalSize { get; set; }
 
-        public bool ThisAnimalWontEatOrGetEatenWhenAdded(bool containsCarnivore, bool smallestAnimalIsCarnivore, AnimalSize smallestAnimal)
+        public bool WontEatOrGetEatenWhenAdded(bool containsCarnivore, bool smallestAnimalIsCarnivore, AnimalSize smallestAnimal)
         {
             if (containsCarnivore == true)
             {
@@ -31,16 +31,16 @@ namespace Circustrein
                 }
                 else
                 {
-                    return ThisAnimalWontEatOrGetEatenByTheCarnInTheWagon(smallestAnimalIsCarnivore, smallestAnimal);
+                    return WontEatOrGetEatenByTheCarnInTheWagon(smallestAnimalIsCarnivore, smallestAnimal);
                 }
             }
             else
             {
-                return ThisAnimalWontEatOrGetEaten(smallestAnimal);
+                return WontEatOrGetEaten(smallestAnimal);
             }
         }
 
-        private bool ThisAnimalWontEatOrGetEaten(AnimalSize smallestAnimal)
+        private bool WontEatOrGetEaten(AnimalSize smallestAnimal)
         {
             if (FoodType == AnimalType.Carnivore)
             {
@@ -56,7 +56,7 @@ namespace Circustrein
             return false;
         }
 
-        private bool ThisAnimalWontEatOrGetEatenByTheCarnInTheWagon(bool smallestAnimalIsCarnivore, AnimalSize smallestAnimal)
+        private bool WontEatOrGetEatenByTheCarnInTheWagon(bool smallestAnimalIsCarnivore, AnimalSize smallestAnimal)
         {
             if (AnimalSize > smallestAnimal && smallestAnimalIsCarnivore == true)
             {

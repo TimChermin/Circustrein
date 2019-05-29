@@ -31,7 +31,7 @@ namespace Circustrein
 
         public bool TryToAddTheAnimal(Animal animal)
         {
-            if (animal.WontEatOrGetEatenWhenAdded(ContainsCarnivore, SmallestAnimalIsCarnivore, SmallestAnimal) && AddingTheAnimalWontGoOverMaxWeight(animal))
+            if (animal.WontEatOrGetEatenWhenAdded(ContainsCarnivore, SmallestAnimalIsCarnivore, SmallestAnimal) && AddingWontGoOverMaxWeight(animal))
             {
                 AddAnimal(animal);
                 return true;
@@ -60,7 +60,7 @@ namespace Circustrein
             }
         }
 
-        private bool AddingTheAnimalWontGoOverMaxWeight(Animal animal)
+        private bool AddingWontGoOverMaxWeight(Animal animal)
         {
             if (Weight + (int)animal.AnimalSize <= 10)
             {

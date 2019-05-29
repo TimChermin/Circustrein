@@ -9,18 +9,20 @@ namespace Circustrein
 {
     public class Train
     {
-        public List<Wagon> wagons = new List<Wagon>();
-        public List<Animal> animals = new List<Animal>();
         private bool succes;
 
         public Train()
         {
-
+            Animals = new List<Animal>();
+            Wagons = new List<Wagon>();
         }
+
+        public List<Animal> Animals { get; set; }
+        public List<Wagon> Wagons { get; set; }
 
         public void AddAnimalToTrain(AnimalType foodType, AnimalSize size)
         {
-            animals.Add(new Animal(foodType, size));
+            Animals.Add(new Animal(foodType, size));
         }
         
         public void AddAnimalsToWagon(List<Animal> animals)
@@ -28,7 +30,7 @@ namespace Circustrein
             foreach (Animal animal in animals)
             {
                 succes = false;
-                foreach (Wagon wagon in wagons)
+                foreach (Wagon wagon in Wagons)
                 {
                     if (wagon.TryToAddTheAnimal(animal) == true)
                     {
@@ -40,19 +42,9 @@ namespace Circustrein
                 if (succes == false)
                 {
                     Wagon wagon = new Wagon(animal);
-                    wagons.Add(wagon);
+                    Wagons.Add(wagon);
                 }
             }
-        }
-
-        public List<Animal> LoadAnimals()
-        {
-            return animals;
-        }
-        
-        public List<Wagon> LoadWagons()
-        {
-            return wagons;
         }
     }
 }
